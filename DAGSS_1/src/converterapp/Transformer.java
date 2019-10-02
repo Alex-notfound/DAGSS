@@ -7,4 +7,5 @@ public interface Transformer {
 	public String getHeader();
 
 	public String getFooter();
+	
 }

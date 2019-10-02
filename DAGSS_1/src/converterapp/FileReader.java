@@ -6,11 +6,9 @@ import java.util.Scanner;
 
 public class FileReader implements Reader {
 
-	File file;
 	Scanner scanner = null;
 
 	public FileReader(File file) {
-		this.file = file;
 		try {
 			scanner = new Scanner(file);
 		} catch (FileNotFoundException e) {
