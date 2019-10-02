@@ -7,16 +7,14 @@ import java.io.PrintStream;
 
 public class FileWriter implements Writer {
 
-	private File file;
 	PrintStream out = null;
 
 	public FileWriter(File file) {
-		this.file = file;
 		try {
-			out = new PrintStream(new FileOutputStream(this.file));
+			out = new PrintStream(new FileOutputStream(file));
 		} catch (FileNotFoundException e1) {
 			System.err
-					.println("the file " + this.file.getAbsolutePath() + " does cannot be created: " + e1.getMessage());
+					.println("the file " + file.getAbsolutePath() + " does cannot be created: " + e1.getMessage());
 			System.exit(1);
 		}
 	}

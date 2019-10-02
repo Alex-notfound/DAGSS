@@ -13,11 +13,13 @@ public class Converter {
 	}
 
 	public void convert() {
-		String s;
 		writer.write(transformer.getHeader());
+		
+		String s;
 		while ((s = reader.read()) != null) {
 			writer.write(transformer.transform(s));
 		}
+		
 		writer.write(transformer.getFooter());
 		writer.write(null);
 	}

@@ -13,6 +13,7 @@ public class ConverterApp {
 			Reader r = new FileReader(cli.getFile("input file: "));
 			Writer w = new FileWriter(cli.getFile("output file: "));
 			Transformer t = new TABtoXMLTransformer();
+
 			Converter c = new Converter(r, t, w);
 			c.convert();
 		} catch (Exception e) {
