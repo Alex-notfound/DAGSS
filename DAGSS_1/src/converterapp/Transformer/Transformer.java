@@ -1,4 +1,4 @@
-package converterapp;
+package converterapp.Transformer;
 
 public interface Transformer {
 	

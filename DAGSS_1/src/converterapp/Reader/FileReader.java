@@ -1,4 +1,4 @@
-package converterapp;
+package converterapp.Reader;
 
 import java.io.File;
 import java.io.FileNotFoundException;

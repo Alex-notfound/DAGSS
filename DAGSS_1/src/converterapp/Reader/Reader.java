@@ -1,4 +1,4 @@
-package converterapp;
+package converterapp.Reader;
 
 public interface Reader {
 	

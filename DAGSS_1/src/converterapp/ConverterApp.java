@@ -1,5 +1,12 @@
 package converterapp;
 
+import converterapp.Reader.FileReader;
+import converterapp.Reader.Reader;
+import converterapp.Transformer.TABtoXMLTransformer;
+import converterapp.Transformer.Transformer;
+import converterapp.Writer.FileWriter;
+import converterapp.Writer.Writer;
+
 public class ConverterApp {
 
 	public static void main(String args[]) {

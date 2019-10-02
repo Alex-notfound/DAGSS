@@ -1,5 +1,9 @@
 package converterapp;
 
+import converterapp.Reader.Reader;
+import converterapp.Transformer.Transformer;
+import converterapp.Writer.Writer;
+
 public class Converter {
 
 	Reader reader;

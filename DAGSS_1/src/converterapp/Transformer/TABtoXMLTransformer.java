@@ -1,4 +1,4 @@
-package converterapp;
+package converterapp.Transformer;
 
 public class TABtoXMLTransformer implements Transformer {
 

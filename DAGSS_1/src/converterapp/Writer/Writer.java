@@ -1,4 +1,4 @@
-package converterapp;
+package converterapp.Writer;
 
 public interface Writer {
 	
