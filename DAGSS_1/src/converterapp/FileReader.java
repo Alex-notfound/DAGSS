@@ -7,19 +7,21 @@ import java.util.Scanner;
 public class FileReader implements Reader {
 
 	File file;
+	Scanner scanner = null;
 
 	public FileReader(File file) {
 		this.file = file;
+		try {
+			scanner = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			System.err.println("the file " + file.getAbsolutePath() + " does not exists: " + e.getMessage());
+			System.exit(1);
+		}
 	}
 
 	public String read() {
-		try (Scanner scanner = new Scanner(this.file)) {
-			if (scanner.hasNextLine()) {
-				return scanner.nextLine();
-			}
-		} catch (FileNotFoundException e) {
-			System.err.println("the file " + this.file.getAbsolutePath() + " does not exists: " + e.getMessage());
-			System.exit(1);
+		if (scanner.hasNextLine()) {
+			return scanner.nextLine();
 		}
 		return null;
 	}

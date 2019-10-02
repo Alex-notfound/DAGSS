@@ -2,22 +2,21 @@ package converterapp;
 
 public class TABtoXMLTransformer implements Transformer {
 
-	@Override
 	public String transform(String s) {
-		// TODO Auto-generated method stub
-		return null;
+		String[] tokens = s.split("\t");
+		if (tokens.length != 2) {
+			throw new IllegalArgumentException("the line does not contain 3 tokens");
+		}
+
+		return "<product>\n\t<name>" + tokens[0] + "</name>\n\t<price>" + tokens[1] + "</price>\n</product>";
 	}
 
-	@Override
 	public String getHeader() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<products>";
 	}
 
-	@Override
 	public String getFooter() {
-		// TODO Auto-generated method stub
-		return null;
+		return "</products>";
 	}
 
 }
