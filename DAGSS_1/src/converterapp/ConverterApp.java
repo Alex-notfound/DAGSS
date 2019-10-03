@@ -4,6 +4,7 @@ import converterapp.Reader.FileReader;
 import converterapp.Reader.Reader;
 import converterapp.Transformer.TABtoXMLTransformer;
 import converterapp.Transformer.Transformer;
+import converterapp.Writer.ConsoleWriter;
 import converterapp.Writer.FileWriter;
 import converterapp.Writer.Writer;
 
@@ -18,7 +19,8 @@ public class ConverterApp {
 		ConverterAppCLI cli = new ConverterAppCLI();
 		try {
 			Reader r = new FileReader(cli.getFile("input file: "));
-			Writer w = new FileWriter(cli.getFile("output file: "));
+			//Writer w = new FileWriter(cli.getFile("output file: "));
+			Writer w = new ConsoleWriter();
 			Transformer t = new TABtoXMLTransformer();
 
 			Converter c = new Converter(r, t, w);
