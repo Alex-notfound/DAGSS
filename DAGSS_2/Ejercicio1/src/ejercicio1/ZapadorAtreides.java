@@ -1,5 +1,7 @@
 package ejercicio1;
 
+import soldados.Zapador;
+
 public class ZapadorAtreides implements Zapador {
 
 	@Override

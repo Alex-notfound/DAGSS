@@ -1,5 +1,7 @@
 package ejercicio1;
 
+import soldados.Artillero;
+
 public class ArtilleroHarkonen implements Artillero {
 
 	@Override

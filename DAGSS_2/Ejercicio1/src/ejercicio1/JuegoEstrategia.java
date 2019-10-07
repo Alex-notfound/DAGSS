@@ -1,5 +1,9 @@
 package ejercicio1;
 
+import jugador.Jugador;
+import jugador.JugadorHumano;
+import jugador.JugadorMaquina;
+
 public class JuegoEstrategia {
 
 	public static void main(String[] args) {

@@ -1,4 +1,7 @@
-package ejercicio1;
+package jugador;
+
+import soldados.Artillero;
+import soldados.Zapador;
 
 public class JugadorMaquina extends Jugador {
 	

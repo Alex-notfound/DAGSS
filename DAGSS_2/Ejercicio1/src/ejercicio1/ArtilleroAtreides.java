@@ -1,5 +1,7 @@
 package ejercicio1;
 
+import soldados.Artillero;
+
 public class ArtilleroAtreides implements Artillero {
 
 	@Override

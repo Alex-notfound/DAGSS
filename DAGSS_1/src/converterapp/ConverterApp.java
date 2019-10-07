@@ -5,7 +5,6 @@ import converterapp.Reader.Reader;
 import converterapp.Transformer.TABtoXMLTransformer;
 import converterapp.Transformer.Transformer;
 import converterapp.Writer.ConsoleWriter;
-import converterapp.Writer.FileWriter;
 import converterapp.Writer.Writer;
 
 public class ConverterApp {
