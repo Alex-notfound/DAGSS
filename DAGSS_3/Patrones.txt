@@ -1,0 +1,2 @@
+Ejercicio 1 - Patron Decorador
+Ejercicio 2 - Patron Observador
