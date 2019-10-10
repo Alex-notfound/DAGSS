@@ -13,17 +13,16 @@ public class FileWriter implements Writer {
 		try {
 			out = new PrintStream(new FileOutputStream(file));
 		} catch (FileNotFoundException e1) {
-			System.err
-					.println("the file " + file.getAbsolutePath() + " does cannot be created: " + e1.getMessage());
+			System.err.println("the file " + file.getAbsolutePath() + " does cannot be created: " + e1.getMessage());
 			System.exit(1);
 		}
 	}
 
 	public void write(String s) {
-		if (s != null) {
-			out.println(s);
-		} else {
-			out.close();
-		}
+		out.println(s);
+	}
+
+	public void close() {
+		out.close();
 	}
 }

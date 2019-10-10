@@ -25,6 +25,6 @@ public class Converter {
 		}
 		
 		writer.write(transformer.getFooter());
-		writer.write(null);
+		writer.close();
 	}
 }

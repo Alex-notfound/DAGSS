@@ -1,8 +1,6 @@
 package converterapp.Writer;
 
 public class ConsoleWriter implements Writer {
-	
-	
 
 	@Override
 	public void write(String s) {
@@ -10,6 +8,10 @@ public class ConsoleWriter implements Writer {
 			System.out.println(s);
 		}
 
+	}
+
+	@Override
+	public void close() {
 	}
 
 }
