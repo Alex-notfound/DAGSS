@@ -16,7 +16,8 @@ public class BibliotecaApp {
 		try {
 			scanner = new Scanner(new File("libros.txt"));
 		} catch (FileNotFoundException e) {
-
+			System.err.println("the file does not exist: " + e.getMessage());
+			System.exit(1);
 		}
 
 		while (scanner.hasNextLine()) {
