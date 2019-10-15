@@ -1,11 +1,11 @@
 package ejercito;
 
-import ejercicio1.ArtilleroHarkonen;
-import ejercicio1.ZapadorHarkonen;
 import soldados.Artillero;
+import soldados.ArtilleroHarkonen;
 import soldados.Zapador;
+import soldados.ZapadorHarkonen;
 
-public class HarkonenFactory implements EjercitoFactory{
+public class HarkonenFactory implements EjercitoFactory {
 
 	@Override
 	public Zapador crearZapador() {
@@ -16,5 +16,5 @@ public class HarkonenFactory implements EjercitoFactory{
 	public Artillero crearArtillero() {
 		return new ArtilleroHarkonen();
 	}
-	
+
 }

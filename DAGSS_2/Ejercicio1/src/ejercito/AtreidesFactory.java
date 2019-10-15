@@ -1,11 +1,11 @@
 package ejercito;
 
-import ejercicio1.ArtilleroAtreides;
-import ejercicio1.ZapadorAtreides;
 import soldados.Artillero;
+import soldados.ArtilleroAtreides;
 import soldados.Zapador;
+import soldados.ZapadorAtreides;
 
-public class AtreidesFactory implements EjercitoFactory{
+public class AtreidesFactory implements EjercitoFactory {
 
 	@Override
 	public Zapador crearZapador() {

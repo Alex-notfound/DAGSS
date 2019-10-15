@@ -1,4 +1,4 @@
-package ejercicio1;
+package soldados;
 
 import soldados.Zapador;
 

@@ -1,11 +1,11 @@
-package ejercicio1;
+package soldados;
 
 import soldados.Zapador;
 
 public class ZapadorHarkonen implements Zapador {
 
 	@Override
-	public void mover(int x, int y) {		
+	public void mover(int x, int y) {
 	}
 
 	@Override

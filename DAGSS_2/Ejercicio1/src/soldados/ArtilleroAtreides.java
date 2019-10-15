@@ -1,4 +1,4 @@
-package ejercicio1;
+package soldados;
 
 import soldados.Artillero;
 
@@ -11,7 +11,6 @@ public class ArtilleroAtreides implements Artillero {
 	@Override
 	public void disparar() {
 		System.out.println("Estoy disparando con punteria atreides!!");
-
 
 	}
 
