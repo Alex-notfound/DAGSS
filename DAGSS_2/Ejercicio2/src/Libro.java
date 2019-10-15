@@ -1,20 +1,27 @@
 
 public class Libro {
-	
-	private String isbn;
+
+	private String titulo;
 	private Autor autor;
-	
-	public Libro(String isbn, Autor autor) {
-		this.isbn = isbn;
+	private String isbn;
+
+	public Libro(String titulo, Autor autor, String isbn) {
+		super();
+		this.titulo = titulo;
 		this.autor = autor;
+		this.isbn = isbn;
 	}
-	
-	public String getIsbn() {
-		return this.isbn;
+
+	public String getTitulo() {
+		return titulo;
 	}
-	
+
 	public Autor getAutor() {
-		return this.autor;
+		return autor;
 	}
-	
+
+	public String getIsbn() {
+		return isbn;
+	}
+
 }
