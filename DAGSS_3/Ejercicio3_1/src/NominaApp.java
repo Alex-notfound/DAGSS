@@ -10,12 +10,24 @@ public class NominaApp {
 
 		Scanner scanner = null;
 		PrintStream out = null;
+		String name;
+		Nomina nomina;
+		double sueldo;
 
 		try {
 			scanner = new Scanner(new File("nomina.txt"));
 		} catch (FileNotFoundException e) {
 			System.err.println("the file does not exist: " + e.getMessage());
 			System.exit(1);
+		}
+		
+		while (scanner.hasNextLine()) {
+			String line = scanner.nextLine();
+			String[] fields = line.split("\t");
+			name = fields[0];
+			nomina = EscalaFactoriaAbstracta.getNomina(fields[1]);
+			
+			
 		}
 
 		try {
@@ -25,9 +37,6 @@ public class NominaApp {
 			System.exit(1);
 		}
 
-		while (scanner.hasNextLine()) {
-			// TODO: Gestionar
-		}
 
 	}
 

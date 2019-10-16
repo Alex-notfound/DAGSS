@@ -13,9 +13,9 @@ import programa.ProgramaF;
 
 public class TrabajoBuilder {
 	
-	private boolean esParalelo;
-	private List<Runnable> trabajos = new ArrayList<>();
-	
+//	private boolean esParalelo;
+//	private List<Runnable> trabajos = new ArrayList<>();
+	private Trabajo t;
 	public static TrabajoBuilder esParalelo() {
 		return new TrabajoBuilder(true);
 	}
@@ -25,19 +25,19 @@ public class TrabajoBuilder {
 	}
 	
 	public TrabajoBuilder(boolean esParalelo) {
-		this.esParalelo = esParalelo;
+		t = esParalelo?new TrabajoParalelo(): new TrabajoSerie();
 	}
 	
 	public TrabajoBuilder queEjecuta(Runnable r) {
-		this.trabajos.add(r);
+		this.t.addTrabajo(r);
 		return this;
 	}
 	
 	public Trabajo obtener() {
-		Trabajo t = this.esParalelo?new TrabajoParalelo(): new TrabajoSerie();
-		for(Runnable sub: this.trabajos) {
-			t.addTrabajo(sub);
-		}
+//		Trabajo t = this.esParalelo?new TrabajoParalelo(): new TrabajoSerie();
+//		for(Runnable sub: this.trabajos) {
+//			t.addTrabajo(sub);
+//		}
 		return t;
 	}
 	
