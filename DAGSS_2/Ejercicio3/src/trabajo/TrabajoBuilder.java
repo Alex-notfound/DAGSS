@@ -1,7 +1,4 @@
 package trabajo;
-import java.util.ArrayList;
-import java.util.List;
-
 import programa.ProgramaA;
 import programa.ProgramaB;
 import programa.ProgramaC;
@@ -9,12 +6,8 @@ import programa.ProgramaD;
 import programa.ProgramaE;
 import programa.ProgramaF;
 
-
-
 public class TrabajoBuilder {
 	
-//	private boolean esParalelo;
-//	private List<Runnable> trabajos = new ArrayList<>();
 	private Trabajo t;
 	public static TrabajoBuilder esParalelo() {
 		return new TrabajoBuilder(true);
@@ -34,15 +27,10 @@ public class TrabajoBuilder {
 	}
 	
 	public Trabajo obtener() {
-//		Trabajo t = this.esParalelo?new TrabajoParalelo(): new TrabajoSerie();
-//		for(Runnable sub: this.trabajos) {
-//			t.addTrabajo(sub);
-//		}
 		return t;
 	}
 	
 	public static void main(String[] args) {
-		
 		
 		Trabajo t = esSerie()
 							.queEjecuta(new ProgramaA())

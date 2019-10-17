@@ -1,14 +1,18 @@
 package programa;
 
-public class ProgramaF implements Runnable{
-  public void run(){
+public class ProgramaF implements Runnable {
+	public void run() {
 
-    try{ 
+		try {
 
-      System.out.println("[INICIO] ProgramaF"); Thread.sleep(10); System.out.println("[FIN] ProgramaF"); 
+			System.out.println("[INICIO] ProgramaF");
+			Thread.sleep(10);
+			System.out.println("[FIN] ProgramaF");
 
-    }catch(InterruptedException e){ throw new RuntimeException(e);} 
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
 
-  } 
+	}
 
 }
