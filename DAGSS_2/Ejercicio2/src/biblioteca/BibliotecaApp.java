@@ -1,29 +1,22 @@
+package biblioteca;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.List;
-import java.util.Scanner;
 
 public class BibliotecaApp {
 
 	public static void main(String[] args) {
 
+		BibliotecaBuilder bibliotecaBuilder = new ObjectBibliotecaBuilder();
+//		BibliotecaBuilder bibliotecaBuilder = new XMLBibliotecaBuilder();
+		LibrosParser parser = new LibrosParser(new File("libros.txt"), bibliotecaBuilder);
+		parser.parse();
+		
 		Biblioteca biblioteca = new Biblioteca();
-		Scanner scanner = null;
 		PrintStream out = null;
-
-		try {
-			scanner = new Scanner(new File("libros.txt"));
-		} catch (FileNotFoundException e) {
-			System.err.println("the file does not exist: " + e.getMessage());
-			System.exit(1);
-		}
-
-		while (scanner.hasNextLine()) {
-			biblioteca.addLibro(TABtoLibro(scanner.nextLine()));
-		}
-
 		try {
 			out = new PrintStream(new FileOutputStream(new File("libros.xml")));
 		} catch (FileNotFoundException e1) {
@@ -38,14 +31,6 @@ public class BibliotecaApp {
 					+ libro.getAutor().getNombre() + "</autor>\n\t<isbn>" + libro.getIsbn() + "</isbn>\n</libro>");
 		}
 		out.println("</libros>");
-	}
-
-	private static Libro TABtoLibro(String s) {
-		String[] tokens = s.split("\t");
-		if (tokens.length != 3) {
-			throw new IllegalArgumentException("the line does not contain 3 tokens");
-		}
-		return new Libro(tokens[0], new Autor(tokens[1]), tokens[2]);
 	}
 
 }
