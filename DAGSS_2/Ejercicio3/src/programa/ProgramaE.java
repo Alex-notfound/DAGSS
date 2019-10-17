@@ -5,7 +5,7 @@ public class ProgramaE implements Runnable{
 
     try{ 
 
-      System.out.println("[INICIO] ProgramaE " + Thread.currentThread().getName()); Thread.sleep(10); System.out.println("[FIN] ProgramaE"); 
+      System.out.println("[INICIO] ProgramaE"); Thread.sleep(10); System.out.println("[FIN] ProgramaE"); 
 
     }catch(InterruptedException e){ throw new RuntimeException(e);} 
 
