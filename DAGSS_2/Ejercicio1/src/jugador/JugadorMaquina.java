@@ -1,12 +1,13 @@
 package jugador;
 
+import ejercito.EjercitoFactory;
 import soldados.Artillero;
 import soldados.Zapador;
 
 public class JugadorMaquina extends Jugador {
 
-	public JugadorMaquina(String tipo) {
-		super(tipo);
+	public JugadorMaquina(EjercitoFactory ejercitoFactory) {
+		super(ejercitoFactory);
 	}
 
 	@Override

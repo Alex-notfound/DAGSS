@@ -13,10 +13,10 @@ public abstract class Jugador {
 	protected List<Zapador> zapadores = new LinkedList<Zapador>();
 	protected EjercitoFactory ejercitoFactory;
 
-	public Jugador(String tipo) {
+	public Jugador(EjercitoFactory ejercitoFactory) {
 
 		// creamos el ejercito inicial (todos de la misma raza, no se pueden mezclar!)
-		this.ejercitoFactory = EjercitoFactory.getEjercito(tipo);
+		this.ejercitoFactory = ejercitoFactory;
 		
 		artilleros.add(this.ejercitoFactory.crearArtillero());
 		artilleros.add(this.ejercitoFactory.crearArtillero());

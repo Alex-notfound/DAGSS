@@ -4,13 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import ejercito.EjercitoFactory;
 import soldados.Artillero;
 import soldados.Zapador;
 
 public class JugadorHumano extends Jugador {
 
-	public JugadorHumano(String tipo) {
-		super(tipo);
+	public JugadorHumano(EjercitoFactory ejercitoFactory) {
+		super(ejercitoFactory);
 
 	}
 
