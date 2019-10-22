@@ -16,6 +16,7 @@ public class BibliotecaApp {
 		parser.parse();
 		
 		Biblioteca biblioteca = new Biblioteca();
+
 		PrintStream out = null;
 		try {
 			out = new PrintStream(new FileOutputStream(new File("libros.xml")));

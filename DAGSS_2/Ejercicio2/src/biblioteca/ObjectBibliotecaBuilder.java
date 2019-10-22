@@ -10,8 +10,8 @@ public class ObjectBibliotecaBuilder implements BibliotecaBuilder {
 		biblioteca.addLibro(libro);
 	}
 
-	public void getResult() {
-		//TODO
+	public Biblioteca getResult() {
+		return this.biblioteca;
 	}
 
 }
