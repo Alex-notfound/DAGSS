@@ -1,7 +1,7 @@
 
-public abstract class Complemento {
+public abstract class Complemento implements Nomina{
 	
-	public Nomina nomina;
+	protected Nomina nomina;
 	
 	public Complemento(Nomina n) {
 		this.nomina = n;

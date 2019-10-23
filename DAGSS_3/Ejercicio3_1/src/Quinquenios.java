@@ -4,8 +4,9 @@ public class Quinquenios extends Complemento{
 	public Quinquenios(Nomina n) {
 		super(n);
 	}
-	
-	public double abono() {
+
+	@Override
+	public double sueldoBase() {
 		return nomina.sueldoBase() + 20;
 	}
 	

@@ -4,8 +4,9 @@ public class Sexenio extends Complemento{
 	public Sexenio(Nomina n) {
 		super(n);
 	}
-	
-	public double abono() {
+
+	@Override
+	public double sueldoBase() {
 		return nomina.sueldoBase() + 50;
 	}
 	
