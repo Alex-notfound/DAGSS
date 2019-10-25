@@ -8,6 +8,7 @@ public class TrabajoParalelo extends Trabajo implements Runnable {
 	public void run() {
 
 		List<Thread> threadList = new LinkedList<>();
+
 		for (Runnable r : this.trabajos) {
 			threadList.add(new Thread(r));
 		}
@@ -23,7 +24,6 @@ public class TrabajoParalelo extends Trabajo implements Runnable {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 }

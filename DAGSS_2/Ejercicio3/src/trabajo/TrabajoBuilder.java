@@ -9,6 +9,7 @@ import programa.ProgramaF;
 public class TrabajoBuilder {
 	
 	private Trabajo t;
+	
 	public static TrabajoBuilder esParalelo() {
 		return new TrabajoBuilder(true);
 	}
@@ -18,7 +19,7 @@ public class TrabajoBuilder {
 	}
 	
 	public TrabajoBuilder(boolean esParalelo) {
-		t = esParalelo?new TrabajoParalelo(): new TrabajoSerie();
+		t = esParalelo? new TrabajoParalelo() : new TrabajoSerie();
 	}
 	
 	public TrabajoBuilder queEjecuta(Runnable r) {

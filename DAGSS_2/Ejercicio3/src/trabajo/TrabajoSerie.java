@@ -3,6 +3,7 @@ package trabajo;
 public class TrabajoSerie extends Trabajo implements Runnable {
 
 	public void run() {
+
 		Thread miRunnableThread;
 
 		for (Runnable r : this.trabajos) {
