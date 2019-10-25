@@ -8,7 +8,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Result;
-import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -25,7 +24,7 @@ public class XMLBibliotecaBuilder implements BibliotecaBuilder {
 
 	private List<Element> bookNodes = new LinkedList<>();
 	Document document;
-	
+
 	public XMLBibliotecaBuilder() {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = null;
@@ -34,66 +33,58 @@ public class XMLBibliotecaBuilder implements BibliotecaBuilder {
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		}
-		document=builder.newDocument();
-//		DOMImplementation implementation = builder.getDOMImplementation();
-//		document = implementation.createDocument(null, null, null);
-//		document.setXmlVersion("1.0");
-		
+		document = builder.newDocument();
 	}
 
-	
 	@Override
 	public void addLibro(String titulo, String autor, String isbn) {
-		
-		Element bookNode = document.createElement("Libro");
-		
-		Element titleNode = document.createElement("Titulo");
+
+		Element bookNode = document.createElement("libro");
+
+		Element titleNode = document.createElement("titulo");
 		Text valueTitleNode = document.createTextNode(titulo);
 		titleNode.appendChild(valueTitleNode);
-		
-		Element authorNode = document.createElement("Autor");
-		Element authorNameNode = document.createElement("Nombre");
+
+		Element authorNode = document.createElement("autor");
+		Element authorNameNode = document.createElement("nombre");
 		Text valueAuthorNameNode = document.createTextNode(autor);
 		authorNameNode.appendChild(valueAuthorNameNode);
 		authorNode.appendChild(authorNameNode);
-		
-		
-		Element isbnNode = document.createElement("ISBN");
+
+		Element isbnNode = document.createElement("isbn");
 		Text valueIsbnNode = document.createTextNode(isbn);
 		isbnNode.appendChild(valueIsbnNode);
-		
+
 		bookNode.appendChild(titleNode);
 		bookNode.appendChild(authorNode);
 		bookNode.appendChild(isbnNode);
-		
+
 		this.bookNodes.add(bookNode);
-		
+
 	}
 
 	public void getResult() {
-        
-        Element root = document.createElement("Libros");
-        document.appendChild(root);
-        System.out.println(document.toString());
-        for(Element bookNode: this.bookNodes) {
-        	root.appendChild(bookNode);
-        }
-        
-        DOMSource source = new DOMSource(document);
-        
-        Result result = new StreamResult(new File("Libros.xml"));
-        Transformer transformer;
-        
+
+		Element root = document.createElement("libros");
+		document.appendChild(root);
+		for (Element bookNode : this.bookNodes) {
+			root.appendChild(bookNode);
+		}
+
+		DOMSource source = new DOMSource(document);
+
+		Result result = new StreamResult(new File("libros.xml"));
+		Transformer transformer;
+
 		try {
 			transformer = TransformerFactory.newInstance().newTransformer();
 			transformer.transform(source, result);
-			
+
 		} catch (TransformerConfigurationException | TransformerFactoryConfigurationError e) {
 			e.printStackTrace();
 		} catch (TransformerException e) {
 			e.printStackTrace();
 		}
-         
 
 	}
 
