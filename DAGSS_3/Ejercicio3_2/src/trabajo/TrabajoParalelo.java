@@ -14,8 +14,8 @@ public class TrabajoParalelo extends Trabajo implements Runnable {
 		}
 
 		for (Thread t : threadList) {
-			t.start();
 			notifyObservers("Start");
+			t.start();
 		}
 
 		for (Thread t : threadList) {

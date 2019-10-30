@@ -32,7 +32,7 @@ public class TrabajoBuilder {
 	}
 	
 	public static void main(String[] args) {
-		
+
 		Trabajo t = esSerie()
 							.queEjecuta(new ProgramaA())
 							.queEjecuta(esParalelo()

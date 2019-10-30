@@ -9,8 +9,8 @@ public class ObservadorTrabajos implements Observer{
 	}
 	
 	@Override
-	public void update(Observable o, Object data) {
-		if(((String)data).equalsIgnoreCase("Start")) {
+	public void update(Observable o, String data) {
+		if(data.equalsIgnoreCase("Start")) {
 			numProgramas++;
 			System.out.println("Creado un programa. Actualmente hay " + numProgramas + " en curso");
 		}else {
