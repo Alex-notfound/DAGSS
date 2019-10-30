@@ -1,4 +1,5 @@
 package trabajo;
+import observer.ObservadorTrabajos;
 import programa.ProgramaA;
 import programa.ProgramaB;
 import programa.ProgramaC;
@@ -46,8 +47,6 @@ public class TrabajoBuilder {
 							.queEjecuta(new ProgramaE())
 							.obtener();
 		
-		t.addObserver(new ObservadorTrabajos());
-									
 		t.run();
 
 	}

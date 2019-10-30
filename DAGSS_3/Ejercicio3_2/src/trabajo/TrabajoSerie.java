@@ -1,10 +1,14 @@
 package trabajo;
 
+import observer.ObservadorTrabajos;
+
 public class TrabajoSerie extends Trabajo implements Runnable {
 
 	public void run() {
 
 		Thread miRunnableThread;
+		ObservadorTrabajos o = new ObservadorTrabajos();
+		addObserver(o);
 
 		for (Runnable r : this.trabajos) {
 			try {
@@ -17,6 +21,8 @@ public class TrabajoSerie extends Trabajo implements Runnable {
 				System.err.println("Interrupted Exception: " + e.getLocalizedMessage());
 			}
 		}
+
+		removeObserver(o);
 
 	}
 
