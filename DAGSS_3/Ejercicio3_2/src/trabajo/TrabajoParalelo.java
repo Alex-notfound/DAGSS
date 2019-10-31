@@ -10,8 +10,8 @@ public class TrabajoParalelo extends Trabajo implements Runnable {
 	public void run() {
 
 		List<Thread> threadList = new LinkedList<>();
-		ObservadorTrabajos o = new ObservadorTrabajos();
-		addObserver(o);
+//		ObservadorTrabajos o = new ObservadorTrabajos();
+//		addObserver(o);
 
 		for (Runnable r : this.trabajos) {
 			threadList.add(new Thread(r));
@@ -30,7 +30,7 @@ public class TrabajoParalelo extends Trabajo implements Runnable {
 			}
 			notifyObservers("Finish");
 		}
-		removeObserver(o);
+//		removeObserver(o);
 
 	}
 

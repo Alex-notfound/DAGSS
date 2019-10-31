@@ -1,11 +1,7 @@
 package trabajo;
-import observer.ObservadorTrabajos;
-import programa.ProgramaA;
-import programa.ProgramaB;
-import programa.ProgramaC;
-import programa.ProgramaD;
-import programa.ProgramaE;
-import programa.ProgramaF;
+
+import observer.ProgramaObserver;
+import programa.*;
 
 public class TrabajoBuilder {
 	
@@ -33,19 +29,50 @@ public class TrabajoBuilder {
 	}
 	
 	public static void main(String[] args) {
-
+		
+		// :)
+		ProgramaObserver pO = new ProgramaObserver();
+		
+		ProgramaA pA = new ProgramaA();
+		pA.addObserver(pO);
+		ProgramaB pB = new ProgramaB();
+		pB.addObserver(pO);
+		ProgramaC pC = new ProgramaC();
+		pC.addObserver(pO);
+		ProgramaD pD = new ProgramaD();
+		pD.addObserver(pO);
+		ProgramaE pE = new ProgramaE();
+		pE.addObserver(pO);
+		ProgramaF pF = new ProgramaF();
+		pF.addObserver(pO);
+		
+		// :'(
+		
 		Trabajo t = esSerie()
-							.queEjecuta(new ProgramaA())
-							.queEjecuta(esParalelo()
-													.queEjecuta(new ProgramaB())
-													.queEjecuta(new ProgramaC())
-													.queEjecuta(esSerie()
-																		.queEjecuta(new ProgramaD())
-																		.queEjecuta(new ProgramaF())
-																		.obtener())
-													.obtener())
-							.queEjecuta(new ProgramaE())
-							.obtener();
+				.queEjecuta(pA)
+				.queEjecuta(esParalelo()
+										.queEjecuta(pB)
+										.queEjecuta(pC)
+										.queEjecuta(esSerie()
+															.queEjecuta(pD)
+															.queEjecuta(pF)
+															.obtener())
+										.obtener())
+				.queEjecuta(pE)
+				.obtener();
+
+//		Trabajo t = esSerie()
+//							.queEjecuta(new ProgramaA())
+//							.queEjecuta(esParalelo()
+//													.queEjecuta(new ProgramaB())
+//													.queEjecuta(new ProgramaC())
+//													.queEjecuta(esSerie()
+//																		.queEjecuta(new ProgramaD())
+//																		.queEjecuta(new ProgramaF())
+//																		.obtener())
+//													.obtener())
+//							.queEjecuta(new ProgramaE())
+//							.obtener();
 		
 		t.run();
 

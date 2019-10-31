@@ -4,11 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 import observer.Observer;
+import observer.ProgramaObserver;
 
 public abstract class Trabajo implements Runnable, Observable {
 
 	protected List<Runnable> trabajos = new LinkedList<>();
 	protected List<Observer> observers = new LinkedList<>();
+	protected ProgramaObserver programaObserver;
 	
 	public List<Runnable> getTrabajos() {
 		return trabajos;

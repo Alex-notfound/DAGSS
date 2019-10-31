@@ -7,8 +7,8 @@ public class TrabajoSerie extends Trabajo implements Runnable {
 	public void run() {
 
 		Thread miRunnableThread;
-		ObservadorTrabajos o = new ObservadorTrabajos();
-		addObserver(o);
+//		ObservadorTrabajos o = new ObservadorTrabajos();
+//		addObserver(o);
 
 		for (Runnable r : this.trabajos) {
 			try {
@@ -22,7 +22,7 @@ public class TrabajoSerie extends Trabajo implements Runnable {
 			}
 		}
 
-		removeObserver(o);
+//		removeObserver(o);
 
 	}
 
