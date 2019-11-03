@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/spire/Documents/GitHub/DAGSS/DAGSS_4/Mini_Framework.jar"/>
+	<classpathentry kind="lib" path="Mini_Framework.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
