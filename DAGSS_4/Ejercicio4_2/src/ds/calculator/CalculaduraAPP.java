@@ -1,4 +1,4 @@
-package calculadora;
+package ds.calculator;
 
 public class CalculaduraAPP {
 

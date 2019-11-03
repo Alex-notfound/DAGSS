@@ -1,4 +1,4 @@
-package calculadora;
+package ds.calculator;
 
 import java.util.LinkedList;
 import java.util.List;
