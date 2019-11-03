@@ -1,15 +1,15 @@
-package logs;
+package ds.framework;
 
-public class ConsoleLogger extends Logger{
+public class ConsoleLogger extends Logger {
 
 	private ConsoleLogger(int threshold, Logger next) {
 		super(threshold, next);
 	}
-	
+
 	private static ConsoleLogger _instance;
-	
+
 	public static ConsoleLogger getInstance(int threshold, Logger next) {
-		if(_instance == null) {
+		if (_instance == null) {
 			_instance = new ConsoleLogger(threshold, next);
 		}
 		return _instance;
@@ -18,7 +18,6 @@ public class ConsoleLogger extends Logger{
 	@Override
 	protected void _log(String msg) {
 		System.out.println(msg);
-		
 	}
-	
+
 }

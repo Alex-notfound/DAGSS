@@ -1,4 +1,4 @@
-package framework;
+package ds.framework;
 
 import java.util.List;
 import java.util.Observable;
