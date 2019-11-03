@@ -42,7 +42,12 @@ public abstract class Application implements Runnable {
 
 			@SuppressWarnings("resource")
 			Scanner input = new Scanner(System.in);
-			option = Integer.parseInt(input.nextLine());
+			try {
+				option = Integer.parseInt(input.nextLine());
+			} catch (NumberFormatException e) {
+				System.err.println("Introduce una opción correcta: ");
+				option = -1;
+			}
 
 		} while (option < 0 || option > operations.size());
 
@@ -66,9 +71,21 @@ public abstract class Application implements Runnable {
 
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
+		String ope = null;
+		boolean repetir;
 		for (int i = 0; i < operation.getParameterNames().size(); i++) {
 			System.out.println(operation.getParameterNames().get(i) + ":");
-			String ope = input.nextLine();
+			repetir = true;
+			while (repetir) {
+				repetir = false;
+				ope = input.nextLine();
+				try {
+					Double.parseDouble(ope);
+				} catch (NumberFormatException e) {
+					System.err.println("Introduce un valor numérico: ");
+					repetir = true;
+				}
+			}
 			results.add(ope);
 		}
 
