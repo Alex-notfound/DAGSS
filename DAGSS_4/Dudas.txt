@@ -1,2 +1,3 @@
 1. El Patron Singleton se aplica a la clase abstracta Logger, o a las concretas ConsoleLogger y FileLogger.
 2. Al aplicar el TemplateMethod a Logger, creamos el metodo "_log", el cual deberia ser protected para que no pudiera ser llamado desde fuera no?
+3. Hay manera de que evitar usar CalculadoraAPP?
