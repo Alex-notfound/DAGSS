@@ -15,7 +15,7 @@ public class Calculadora extends Application {
 
 		operations.add(new Suma());
 		operations.add(new Division());
-		operations.add(new Raiz());
+		operations.add(new FullVersionOperation(new Raiz()));
 
 		return operations;
 	}

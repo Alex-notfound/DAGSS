@@ -96,7 +96,7 @@ public abstract class Application implements Runnable {
 		String msg = String.format("[INFO] %s has been executed.", operation.getName());
 
 		this.consoleLog.log(msg, Logger.INFO);
-		return operation.exectute(paramsValues);
+		return operation.execute(paramsValues);
 	}
 
 }

@@ -18,7 +18,7 @@ public class Raiz extends Operation {
 	}
 
 	@Override
-	public String exectute(List<String> paramValues) {
+	public String execute(List<String> paramValues) {
 		return String.valueOf(Math.sqrt(Double.parseDouble(paramValues.get(0))));
 	}
 }

@@ -19,7 +19,7 @@ public class Division extends Operation {
 	}
 
 	@Override
-	public String exectute(List<String> paramValues) {
+	public String execute(List<String> paramValues) {
 		return String.valueOf(Integer.parseInt(paramValues.get(0)) / Integer.parseInt(paramValues.get(1)));
 	}
 

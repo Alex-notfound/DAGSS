@@ -19,7 +19,7 @@ public class Suma extends Operation {
 	}
 
 	@Override
-	public String exectute(List<String> paramValues) {
+	public String execute(List<String> paramValues) {
 		int result = 0;
 
 		for (int i = 0; i < paramValues.size(); i++) {
