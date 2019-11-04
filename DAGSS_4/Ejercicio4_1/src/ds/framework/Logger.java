@@ -8,10 +8,19 @@ public abstract class Logger {
 
 	protected Logger next;
 	protected int threshold;
+	
+	private static Logger _instance;
 
-	public Logger(int threshold, Logger next) {
+	private Logger(int threshold, Logger next) {
 		this.threshold = threshold;
 		this.next = next;
+	}
+	
+	public Logger getInstance(int threshold, Logger next) {
+		if (_instance == null) {
+			_instance = new Logger(threshold, next);
+		}
+		return _instance;
 	}
 
 	protected abstract void _log(String msg);

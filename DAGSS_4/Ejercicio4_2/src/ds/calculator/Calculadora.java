@@ -19,5 +19,8 @@ public class Calculadora extends Application {
 
 		return operations;
 	}
+	public static void main(String[] args) {
+		new Calculadora().run();
+	}
 
 }

@@ -4,33 +4,26 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.sun.media.jfxmedia.logging.Logger;
 
 public abstract class Application implements Runnable {
 
 	public abstract List<Operation> createOperations();
 
-	ConsoleLogger consoleLog = ConsoleLogger.getInstance(Logger.INFO, null);
+	Logger logger = Logger.getInstance(Logger.INFO, null);
 
 	// Implements Runnable?
 	public void run() {
 		while (true) {
-
-			// Se que esto se puede resumir en un linea, lo dejo asi por ahora para que se
-			// vea mas claro como funciona
-
 			int op = showMenu();
 			Operation operation = getOperation(op);
 			List<String> paramsValues = getOptions(operation);
 			String result = runOperation(operation, paramsValues);
 			System.out.println("Result: " + result);
-
 		}
 	}
 
 	private int showMenu() {
 		List<Operation> operations = createOperations();
-
 		int option = 0;
 		do {
 			System.out.println("Choose an option:");
@@ -52,7 +45,7 @@ public abstract class Application implements Runnable {
 		} while (option < 0 || option > operations.size());
 
 		if (option == operations.size()) {
-			this.consoleLog.log("[INFO] The program has been finished.", Logger.INFO);
+			this.logger.log("[INFO] The program has been finished.", Logger.INFO);
 			System.exit(0);
 		}
 
@@ -95,7 +88,7 @@ public abstract class Application implements Runnable {
 	private String runOperation(Operation operation, List<String> paramsValues) {
 		String msg = String.format("[INFO] %s has been executed.", operation.getName());
 
-		this.consoleLog.log(msg, Logger.INFO);
+		this.logger.log(msg, Logger.INFO);
 		return operation.execute(paramsValues);
 	}
 

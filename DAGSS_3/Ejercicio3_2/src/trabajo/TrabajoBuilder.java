@@ -30,7 +30,7 @@ public class TrabajoBuilder {
 	
 	public static void main(String[] args) {
 		
-		// :)
+
 		ProgramaObserver pO = new ProgramaObserver();
 		
 		ProgramaA pA = new ProgramaA();
@@ -46,7 +46,6 @@ public class TrabajoBuilder {
 		ProgramaF pF = new ProgramaF();
 		pF.addObserver(pO);
 		
-		// :'(
 		
 		Trabajo t = esSerie()
 				.queEjecuta(pA)
@@ -60,19 +59,6 @@ public class TrabajoBuilder {
 										.obtener())
 				.queEjecuta(pE)
 				.obtener();
-
-//		Trabajo t = esSerie()
-//							.queEjecuta(new ProgramaA())
-//							.queEjecuta(esParalelo()
-//													.queEjecuta(new ProgramaB())
-//													.queEjecuta(new ProgramaC())
-//													.queEjecuta(esSerie()
-//																		.queEjecuta(new ProgramaD())
-//																		.queEjecuta(new ProgramaF())
-//																		.obtener())
-//													.obtener())
-//							.queEjecuta(new ProgramaE())
-//							.obtener();
 		
 		t.run();
 
