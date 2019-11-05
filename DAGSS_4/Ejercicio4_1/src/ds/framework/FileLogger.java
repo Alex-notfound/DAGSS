@@ -12,15 +12,6 @@ public class FileLogger extends Logger {
 		super(threshold, next);
 		this.file = file;
 	}
-	
-//	private static FileLogger _instance;
-//
-//	public static FileLogger getInstance(File file, int threshold, Logger next) {
-//		if (_instance == null) {
-//			_instance = new FileLogger(file, threshold, next);
-//		}
-//		return _instance;
-//	}
 
 	@Override
 	protected void _log(String msg) {

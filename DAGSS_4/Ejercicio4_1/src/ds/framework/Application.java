@@ -9,9 +9,8 @@ public abstract class Application implements Runnable {
 
 	public abstract List<Operation> createOperations();
 
-	Logger logger = Logger.getInstance(Logger.INFO, null);
+	Logger logger = Logger.getInstance();
 
-	// Implements Runnable?
 	public void run() {
 		while (true) {
 			int op = showMenu();
