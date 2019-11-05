@@ -1,5 +1,7 @@
 package ds.framework;
 
+import java.io.File;
+
 public abstract class Logger {
 
 	public static final int DEBUG = 1;
@@ -18,7 +20,7 @@ public abstract class Logger {
 	
 	public static Logger getInstance() {
 		if (_instance == null) {
-			_instance = new ConsoleLogger(INFO, new FileLogger(null, ERROR, null));
+			_instance = new ConsoleLogger(INFO, new FileLogger(new File("log.log"), ERROR, null));
 		}
 		return _instance;
 	}
