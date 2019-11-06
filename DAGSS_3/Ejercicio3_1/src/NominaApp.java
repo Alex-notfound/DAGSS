@@ -12,7 +12,6 @@ public class NominaApp {
 		PrintStream out = null;
 		String name;
 		Nomina nomina;
-		double sueldo;
 
 		try {
 			scanner = new Scanner(new File("nomina.txt"));
@@ -25,7 +24,7 @@ public class NominaApp {
 			String line = scanner.nextLine();
 			String[] fields = line.split("\t");
 			name = fields[0];
-			//nomina = EscalaFactoriaAbstracta.getNomina(fields[1]);
+
 			nomina = selectEscala(fields[1]);
 			
 			nomina = bonus(Integer.parseInt(fields[2]), nomina);
