@@ -1,5 +1,5 @@
 
-public class Interno extends Complemento{
+public class Interno extends Complemento {
 
 	public Interno(Nomina n) {
 		super(n);

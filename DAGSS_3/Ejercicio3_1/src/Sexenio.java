@@ -1,5 +1,5 @@
 
-public class Sexenio extends Complemento{
+public class Sexenio extends Complemento {
 
 	public Sexenio(Nomina n) {
 		super(n);
@@ -9,5 +9,5 @@ public class Sexenio extends Complemento{
 	public double sueldoBase() {
 		return nomina.sueldoBase() + 50;
 	}
-	
+
 }
