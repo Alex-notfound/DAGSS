@@ -50,10 +50,10 @@ public class NominaApp {
 			return bonus(years - 6, new Sexenio(nomina));
 		}
 		if (years >= 5) {
-			return bonus(years - 5, new Quinquenios(nomina));
+			return bonus(years - 5, new Quinquenio(nomina));
 		}
 		if (years >= 3) {
-			return bonus(years - 3, new Trienios(nomina));
+			return bonus(years - 3, new Trienio(nomina));
 		}
 		return nomina;
 	}

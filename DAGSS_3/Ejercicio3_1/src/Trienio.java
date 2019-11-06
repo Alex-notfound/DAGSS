@@ -1,7 +1,7 @@
 
-public class Trienios extends Complemento {
+public class Trienio extends Complemento {
 
-	public Trienios(Nomina n) {
+	public Trienio(Nomina n) {
 		super(n);
 	}
 

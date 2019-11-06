@@ -1,7 +1,7 @@
 
-public class Quinquenios extends Complemento {
+public class Quinquenio extends Complemento {
 
-	public Quinquenios(Nomina n) {
+	public Quinquenio(Nomina n) {
 		super(n);
 	}
 
