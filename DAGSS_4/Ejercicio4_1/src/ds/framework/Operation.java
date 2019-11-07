@@ -1,13 +1,14 @@
 package ds.framework;
 
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Observable;
 
-public abstract class Operation extends Observable {
+public abstract class Operation implements Observable {
 	// TODO Implementar patron Observer.
 
 	private String name;
 	private List<String> parameters;
+	private List<Observer> observers = new LinkedList<>();
 
 	public Operation(String name, List<String> parameters) {
 		this.name = name;
@@ -26,5 +27,18 @@ public abstract class Operation extends Observable {
 		// TODO: Devolver lista con los parametros de la operacion
 		return parameters;
 	}
+
+	@Override
+	public void addObserver(Observer o) {
+		this.observers.add(o);
+	}
+
+	@Override
+	public void notifyObservers(String state) {
+		for(Observer o: this.observers) {
+			o.notify();
+		}
+	}
+	
 
 }
