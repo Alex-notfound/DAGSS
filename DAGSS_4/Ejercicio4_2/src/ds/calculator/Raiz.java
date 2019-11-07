@@ -19,6 +19,19 @@ public class Raiz extends Operation {
 
 	@Override
 	public String execute(List<String> paramValues) {
-		return String.valueOf(Math.sqrt(Double.parseDouble(paramValues.get(0))));
+		double num = 0;
+		String toret = null;
+		try {
+			Thread.sleep(250);
+			this.notifyObservers("50%");
+			num = Double.parseDouble(paramValues.get(0));
+			Thread.sleep(250);
+			this.notifyObservers("100%");
+			toret = String.valueOf(Math.sqrt(num));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		return toret;
 	}
 }

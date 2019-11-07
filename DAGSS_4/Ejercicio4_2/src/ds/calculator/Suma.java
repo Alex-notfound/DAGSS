@@ -21,6 +21,7 @@ public class Suma extends Operation {
 	@Override
 	public String execute(List<String> paramValues) {
 		int result = 0;
+		String toret = null;
 		
 		// Somos conscientes de que la suma se podia hacer en un linea
 		try {	
@@ -32,13 +33,14 @@ public class Suma extends Operation {
 			result += Integer.parseInt(paramValues.get(1));
 			Thread.sleep(250);
 			this.notifyObservers("75%");
-			String toret = String.valueOf(result);
+			toret = String.valueOf(result);
 			Thread.sleep(250);
 			this.notifyObservers("100%");
 
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
 		return toret;
 	}
 

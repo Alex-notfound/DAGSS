@@ -36,7 +36,7 @@ public abstract class Operation implements Observable {
 	@Override
 	public void notifyObservers(String state) {
 		for(Observer o: this.observers) {
-			o.notify();
+			o.update(this, state);
 		}
 	}
 	
