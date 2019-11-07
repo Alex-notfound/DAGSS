@@ -13,7 +13,8 @@ public class Calculadora extends Application {
 
 		List<Operation> operations = new LinkedList<>();
 
-		operations.add(new Suma());
+		operations.add(new Suma().addObserver(o););
+		
 		operations.add(new Division());
 		operations.add(new FullVersionOperation(new Raiz()));
 

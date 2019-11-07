@@ -1,2 +1,0 @@
-1. En Logger, el constructor en vez de ser privado como especifica el patron Singleton, es protected para que las clases que la hereden puedan usar el super. Esta bien? Hay otra forma?
-2. Hay manera de que evitar usar CalculadoraAPP?

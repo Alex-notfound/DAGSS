@@ -21,12 +21,25 @@ public class Suma extends Operation {
 	@Override
 	public String execute(List<String> paramValues) {
 		int result = 0;
+		
+		// Somos conscientes de que la suma se podia hacer en un linea
+		try {	
+			Thread.sleep(250);
+			this.notifyObservers("25%");
+			result += Integer.parseInt(paramValues.get(0));
+			Thread.sleep(250);
+			this.notifyObservers("50%");
+			result += Integer.parseInt(paramValues.get(1));
+			Thread.sleep(250);
+			this.notifyObservers("75%");
+			String toret = String.valueOf(result);
+			Thread.sleep(250);
+			this.notifyObservers("100%");
 
-		for (int i = 0; i < paramValues.size(); i++) {
-			result += Integer.parseInt(paramValues.get(i));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
-
-		return String.valueOf(result);
+		return toret;
 	}
 
 }
