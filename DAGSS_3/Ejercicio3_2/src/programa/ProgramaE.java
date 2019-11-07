@@ -7,8 +7,8 @@ public class ProgramaE extends Programa implements Runnable {
 			super.notifyObservers("Start");
 			System.out.println("[INICIO] ProgramaE");
 			Thread.sleep(10);
-			System.out.println("[FIN] ProgramaE");
 			super.notifyObservers("Finish");
+			System.out.println("[FIN] ProgramaE");
 
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);

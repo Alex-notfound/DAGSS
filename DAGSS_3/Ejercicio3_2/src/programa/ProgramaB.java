@@ -6,9 +6,9 @@ public class ProgramaB extends Programa implements Runnable {
 		try {
 			super.notifyObservers("Start");
 			System.out.println("[INICIO] ProgramaB");
-			Thread.sleep(10);
-			System.out.println("[FIN] ProgramaB");
+			Thread.sleep(20);
 			super.notifyObservers("Finish");
+			System.out.println("[FIN] ProgramaB");
 
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);

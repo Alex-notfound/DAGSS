@@ -29,7 +29,6 @@ public class TrabajoBuilder {
 	}
 	
 	public static void main(String[] args) {
-		
 
 		ProgramaObserver pO = new ProgramaObserver();
 		
@@ -45,7 +44,6 @@ public class TrabajoBuilder {
 		pE.addObserver(pO);
 		ProgramaF pF = new ProgramaF();
 		pF.addObserver(pO);
-		
 		
 		Trabajo t = esSerie()
 				.queEjecuta(pA)
