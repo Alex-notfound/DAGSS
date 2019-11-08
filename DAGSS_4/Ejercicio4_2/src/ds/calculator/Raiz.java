@@ -31,7 +31,7 @@ public class Raiz extends Operation {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+
 		return toret;
 	}
 }

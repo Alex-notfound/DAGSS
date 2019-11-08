@@ -22,9 +22,8 @@ public class Division extends Operation {
 	public String execute(List<String> paramValues) {
 		int result = 0;
 		String toret = null;
-		
-		// Somos conscientes de que la suma se podia hacer en un linea
-		try {	
+
+		try {
 			Thread.sleep(250);
 			this.notifyObservers("50%");
 			result = Integer.parseInt(paramValues.get(0)) / Integer.parseInt(paramValues.get(1));

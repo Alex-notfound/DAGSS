@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Operation implements Observable {
-	// TODO Implementar patron Observer.
 
 	private String name;
 	private List<String> parameters;
@@ -35,10 +34,9 @@ public abstract class Operation implements Observable {
 
 	@Override
 	public void notifyObservers(String state) {
-		for(Observer o: this.observers) {
+		for (Observer o : this.observers) {
 			o.update(this, state);
 		}
 	}
-	
 
 }

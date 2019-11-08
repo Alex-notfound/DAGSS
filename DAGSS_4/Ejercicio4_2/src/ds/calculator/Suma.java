@@ -22,9 +22,9 @@ public class Suma extends Operation {
 	public String execute(List<String> paramValues) {
 		int result = 0;
 		String toret = null;
-		
+
 		// Somos conscientes de que la suma se podia hacer en un linea
-		try {	
+		try {
 			Thread.sleep(250);
 			this.notifyObservers("25%");
 			result += Integer.parseInt(paramValues.get(0));
@@ -40,7 +40,7 @@ public class Suma extends Operation {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+
 		return toret;
 	}
 

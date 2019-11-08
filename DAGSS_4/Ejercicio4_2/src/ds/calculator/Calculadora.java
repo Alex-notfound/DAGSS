@@ -11,7 +11,7 @@ public class Calculadora extends Application {
 
 	@Override
 	public List<Operation> createOperations() {
-		
+
 		OperationObserver opObserver = new OperationObserver();
 
 		Suma suma = new Suma();
@@ -20,7 +20,7 @@ public class Calculadora extends Application {
 		div.addObserver(opObserver);
 		Raiz raiz = new Raiz();
 		raiz.addObserver(opObserver);
-		
+
 		List<Operation> operations = new LinkedList<>();
 
 		operations.add(suma);
@@ -29,6 +29,7 @@ public class Calculadora extends Application {
 
 		return operations;
 	}
+
 	public static void main(String[] args) {
 		new Calculadora().run();
 	}

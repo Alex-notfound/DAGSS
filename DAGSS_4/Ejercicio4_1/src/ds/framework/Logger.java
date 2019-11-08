@@ -17,7 +17,7 @@ public abstract class Logger {
 		this.threshold = threshold;
 		this.next = next;
 	}
-	
+
 	public static Logger getInstance() {
 		if (_instance == null) {
 			_instance = new ConsoleLogger(INFO, new FileLogger(new File("log.log"), ERROR, null));
