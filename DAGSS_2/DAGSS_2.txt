@@ -1,3 +1,0 @@
-Ejercicio 1 - AbstractFactory
-Ejercicio 2 - Builder
-Ejercicio 3 - Composite

@@ -14,16 +14,13 @@ public abstract class Operation implements Observable {
 		this.parameters = parameters;
 	}
 
-	// TODO: Implementar execute (Patron Command)
 	public abstract String execute(List<String> paramValues);
 
 	public String getName() {
-		// TODO: Devolver nombre operacion
 		return this.name;
 	}
 
 	public List<String> getParameterNames() {
-		// TODO: Devolver lista con los parametros de la operacion
 		return parameters;
 	}
 
