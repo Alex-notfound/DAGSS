@@ -5,34 +5,113 @@
  */
 package es.uvigo.esei.dagss.facturaaas.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author spire
- */
-public class Pago {
-    
+@Entity
+@Table(name = "PAGO")
+public class Pago implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     @ManyToOne
-    @JoinColumn(name = "NUM_FACTURA")
-    private int numFactura;
-    
-    
+    @JoinColumn(name = "FACTURA_NUM_FACTURA")
+    private Factura factura;
+
     private String nombre;
-    
+
     @ManyToOne
-    @JoinColumn(name = "NIF_CLIENTE_ID")
+    @JoinColumn(name = "CLIENTE_NIF")
     private Cliente cliente;
-    
+
+    @Enumerated(EnumType.STRING)
     private EstadoPago estado;
-    
+
     private Long importe;
-    
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
+
+    public Pago() {
+    }
+
+    public Pago(int id, Factura factura, String nombre, Cliente cliente, EstadoPago estado, Long importe, Date fecha) {
+        this.id = id;
+        this.factura = factura;
+        this.nombre = nombre;
+        this.cliente = cliente;
+        this.estado = estado;
+        this.importe = importe;
+        this.fecha = fecha;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Factura getFactura() {
+        return factura;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public EstadoPago getEstado() {
+        return estado;
+    }
+
+    public Long getImporte() {
+        return importe;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public void setEstado(EstadoPago estado) {
+        this.estado = estado;
+    }
+
+    public void setImporte(Long importe) {
+        this.importe = importe;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
 }
