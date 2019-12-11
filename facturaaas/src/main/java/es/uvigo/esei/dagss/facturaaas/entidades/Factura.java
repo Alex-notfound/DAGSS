@@ -34,6 +34,10 @@ public class Factura implements Serializable {
     private String ejercicio; //Ejercicio es un String?
 
     @ManyToOne
+    @JoinColumn(name = "USUARIO_ID")
+    private Usuario usuario;
+
+    @ManyToOne
     @JoinColumn(name = "CLIENTE_ID")
     private Cliente cliente;
 
@@ -58,15 +62,16 @@ public class Factura implements Serializable {
         this.fechaEmision = Calendar.getInstance().getTime();
     }
 
-    public Factura(Long numFactura, Cliente cliente, Date fechaEmision, Collection<LineaFactura> lineasFactura, Collection<Pago> pago, FormaPago formaPago, EstadoFactura estado, String ejercicio, String comentarios) {
+    public Factura(Long numFactura, String ejercicio, Usuario usuario, Cliente cliente, Date fechaEmision, FormaPago formaPago, Collection<LineaFactura> lineasFactura, Collection<Pago> pago, EstadoFactura estado, String comentarios) {
         this.numFactura = numFactura;
+        this.ejercicio = ejercicio;
+        this.usuario = usuario;
         this.cliente = cliente;
-        this.fechaEmision = Calendar.getInstance().getTime();
+        this.fechaEmision = fechaEmision;
+        this.formaPago = formaPago;
         this.lineasFactura = lineasFactura;
         this.pago = pago;
-        this.formaPago = formaPago;
         this.estado = estado;
-        this.ejercicio = ejercicio;
         this.comentarios = comentarios;
     }
 
