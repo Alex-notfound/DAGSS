@@ -5,17 +5,14 @@
  */
 package es.uvigo.esei.dagss.facturaaas.entidades;
 
-import java.util.Collection;
+import java.io.Serializable;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-
-/**
- *
- * @author spire
- */
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /*
     número de línea (generado por el sistema, no editable)
@@ -25,43 +22,46 @@ import javax.persistence.OneToMany;
     procentaje de descuento
     tipo de IVA (inicializado con el tipo de IVA por defecto del usuario actual, seleccionable de una lista desplegable)
     importe total (calculado, no editable)
-*/
-public class LineaFactura {
+ */
+@Entity
+@Table(name = "LINEA_FACTURA")
+public class LineaFactura implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int numLinea;
-    
+    private Long numLinea;
     private String concepto;
-    
     private int cantidad;
-    
     private Long precio;
-    
     private Long descuento;
-    
-    @OneToMany
-    private Collection<TipoIVA> iva;
-    
-    @JoinColumn(name = "NUM_FACTURA")
-    private Factura factura;
-    
-//    private Long total;
 
-    public LineaFactura(int numLinea, String concepto, int cantidad, Long precio, Long descuento, Collection<TipoIVA> iva, Factura factura) {
+    @ManyToOne
+    private TipoIVA tipoIva;
+
+    @ManyToOne
+    @JoinColumn(name = "FACTURA_NUMFACTURA")
+    private Factura factura;
+
+//    private Long total;
+    public LineaFactura() {
+        this.cantidad = 1;
+    }
+
+    public LineaFactura(Long numLinea, String concepto, int cantidad, Long precio, Long descuento, TipoIVA tipoIva, Factura factura) {
         this.numLinea = numLinea;
         this.concepto = concepto;
         this.cantidad = cantidad;
         this.precio = precio;
         this.descuento = descuento;
-        this.iva = iva;
+        this.tipoIva = tipoIva;
         this.factura = factura;
     }
 
-    public int getNumLinea() {
+    public Long getNumLinea() {
         return numLinea;
     }
 
-    public void setNumLinea(int numLinea) {
+    public void setNumLinea(Long numLinea) {
         this.numLinea = numLinea;
     }
 
@@ -97,12 +97,12 @@ public class LineaFactura {
         this.descuento = descuento;
     }
 
-    public Collection<TipoIVA> getIva() {
-        return iva;
+    public TipoIVA getIva() {
+        return tipoIva;
     }
 
-    public void setIva(Collection<TipoIVA> iva) {
-        this.iva = iva;
+    public void setIva(TipoIVA tipoIva) {
+        this.tipoIva = tipoIva;
     }
 
     public Factura getFactura() {
@@ -112,7 +112,5 @@ public class LineaFactura {
     public void setFactura(Factura factura) {
         this.factura = factura;
     }
-    
-    
 
 }
