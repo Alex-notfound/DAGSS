@@ -6,6 +6,7 @@
 package es.uvigo.esei.dagss.facturaaas.entidades;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.CascadeType;
@@ -18,50 +19,49 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author spire
- */
-
 @Entity
 @Table(name = "FACTURA")
 public class Factura implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int numFactura;
-    
+    private Long numFactura;
+
+    private String ejercicio; //Ejercicio es un String?
+
     @ManyToOne
-    @JoinColumn(name="NIF_CLIENTE_ID")
+    @JoinColumn(name = "CLIENTE_ID")
     private Cliente cliente;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEmision;
-    
-    @OneToMany(mappedBy="factura", cascade=CascadeType.ALL)
+
+    @ManyToOne
+    private FormaPago formaPago;
+
+    @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL)
     private Collection<LineaFactura> lineasFactura;
-    
-    @OneToMany(mappedBy="factura", cascade=CascadeType.ALL)
+
+    @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL)
     private Collection<Pago> pago;
 
-    @OneToOne
-    private FormaPago formaPago;
-    
     @Enumerated(EnumType.STRING)
     private EstadoFactura estado;
-    
-    private String ejercicio; //Ejercicio es un String?
-    
+
     private String comentarios;
 
-    public Factura(int numFactura, Cliente cliente, Date fechaEmision, Collection<LineaFactura> lineasFactura, Collection<Pago> pago, FormaPago formaPago, EstadoFactura estado, String ejercicio, String comentarios) {
+    public Factura() {
+        this.fechaEmision = Calendar.getInstance().getTime();
+    }
+
+    public Factura(Long numFactura, Cliente cliente, Date fechaEmision, Collection<LineaFactura> lineasFactura, Collection<Pago> pago, FormaPago formaPago, EstadoFactura estado, String ejercicio, String comentarios) {
         this.numFactura = numFactura;
         this.cliente = cliente;
-        this.fechaEmision = fechaEmision;
+        this.fechaEmision = Calendar.getInstance().getTime();
         this.lineasFactura = lineasFactura;
         this.pago = pago;
         this.formaPago = formaPago;
@@ -70,11 +70,11 @@ public class Factura implements Serializable {
         this.comentarios = comentarios;
     }
 
-    public int getNumFactura() {
+    public Long getNumFactura() {
         return numFactura;
     }
 
-    public void setNumFactura(int numFactura) {
+    public void setNumFactura(Long numFactura) {
         this.numFactura = numFactura;
     }
 
@@ -141,6 +141,5 @@ public class Factura implements Serializable {
     public void setComentarios(String comentarios) {
         this.comentarios = comentarios;
     }
-    
-    
+
 }
