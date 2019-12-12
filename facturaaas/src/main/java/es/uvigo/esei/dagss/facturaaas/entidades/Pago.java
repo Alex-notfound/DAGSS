@@ -28,6 +28,10 @@ public class Pago implements Serializable {
     private int id;
 
     @ManyToOne
+    @JoinColumn(name = "USUARIO_ID")
+    private Usuario usuario;
+
+    @ManyToOne
     @JoinColumn(name = "FACTURA_NUM_FACTURA")
     private Factura factura;
 
@@ -48,8 +52,9 @@ public class Pago implements Serializable {
     public Pago() {
     }
 
-    public Pago(int id, Factura factura, String nombre, Cliente cliente, EstadoPago estado, Long importe, Date fecha) {
+    public Pago(int id, Usuario usuario, Factura factura, String nombre, Cliente cliente, EstadoPago estado, Long importe, Date fecha) {
         this.id = id;
+        this.usuario = usuario;
         this.factura = factura;
         this.nombre = nombre;
         this.cliente = cliente;
@@ -112,6 +117,14 @@ public class Pago implements Serializable {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
 }

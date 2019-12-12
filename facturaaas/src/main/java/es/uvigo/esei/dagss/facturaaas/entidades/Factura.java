@@ -147,4 +147,12 @@ public class Factura implements Serializable {
         this.comentarios = comentarios;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
 }
