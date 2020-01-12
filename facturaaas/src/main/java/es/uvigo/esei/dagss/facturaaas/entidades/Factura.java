@@ -155,6 +155,10 @@ public class Factura implements Serializable {
         this.usuario = usuario;
     }
     
+    public void addLineaFactura(LineaFactura lf){
+        this.lineasFactura.add(lf);
+    }
+    
     public long getImporte(){
         long importe = 0;
         for(LineaFactura lF : lineasFactura){

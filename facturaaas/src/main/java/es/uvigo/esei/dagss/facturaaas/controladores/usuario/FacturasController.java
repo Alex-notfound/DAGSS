@@ -26,7 +26,6 @@ public class FacturasController implements Serializable {
     private List<Factura> facturas;
     private Factura facturaActual;
     private LineaFactura lineaFacturaActual;
-    private List<LineaFactura> lineasFactura;
     private boolean esNuevo;
     private List<Cliente> clientesFacturas;
     private Cliente clienteFiltrado;
@@ -63,14 +62,6 @@ public class FacturasController implements Serializable {
     public void setLineaFacturaActual(LineaFactura lineaFacturaActual) {
         this.lineaFacturaActual = lineaFacturaActual;
     }
-
-    public List<LineaFactura> getLineasFactura() {
-        return lineasFactura;
-    }
-
-    public void setLineasFactura(List<LineaFactura> lineasFactura) {
-        this.lineasFactura = lineasFactura;
-    }
     
     public boolean isEsNuevo() {
         return esNuevo;
@@ -105,8 +96,6 @@ public class FacturasController implements Serializable {
         this.facturas = refrescarListaFacturas();
         this.clientesFacturas = obtenerClientes();
         this.facturaActual = null;
-        this.lineaFacturaActual = null;
-        this.lineasFactura = null;
         this.esNuevo = false;
     }
     
@@ -119,24 +108,25 @@ public class FacturasController implements Serializable {
         this.facturaActual = new Factura();
         this.lineaFacturaActual = new LineaFactura();
         this.facturaActual.setUsuario(authController.getUsuarioLogueado());
-        this.lineasFactura = refrescarListaLineasFacturas();
+        this.facturaActual.setLineasFactura(refrescarListaLineasFacturas());
     }
     
     public void doEditar(Factura factura){
         this.esNuevo = false;
         this.facturaActual = factura;
+        this.facturaActual.setLineasFactura(refrescarListaLineasFacturas());
         this.lineaFacturaActual = new LineaFactura();
-        this.lineasFactura = refrescarListaLineasFacturas();
     }
     
-    public void doGuardarLineaVenta(){
-        this.daoLineaFactura.crear(lineaFacturaActual);
-        //this.lineaFacturaActual = new LineaFactura();
+    public void doCrearLineaVenta(){
+        this.lineaFacturaActual.setFactura(this.facturaActual);
+        this.facturaActual.addLineaFactura(this.lineaFacturaActual);
+        this.lineaFacturaActual = new LineaFactura();
     }
     
-    public void doEditarLineaVenta(LineaFactura linea){
-        this.lineaFacturaActual = linea;
-    }
+//    public void doEditarLineaVenta(LineaFactura linea){
+//        this.lineaFacturaActual = linea;
+//    }
     
     public void doGuardarEditado(){
         if(this.esNuevo){
@@ -148,13 +138,11 @@ public class FacturasController implements Serializable {
         this.facturas = refrescarListaFacturas();
         //this.clientesFacturas = obtenerClientes();
         this.facturaActual = null;
-        this.lineaFacturaActual = null;
         this.esNuevo = false;
     }
     
     public void doCancelarEditado(){
         this.facturaActual = null;
-        this.lineaFacturaActual = null;
         this.esNuevo = false;
     }
 
@@ -176,5 +164,4 @@ public class FacturasController implements Serializable {
         
         return listaClientes;
     }
-    
 }

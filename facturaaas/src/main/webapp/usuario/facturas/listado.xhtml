@@ -166,11 +166,10 @@
                                     <f:selectItem itemLabel="#{facturasController.lineaFacturaActual.iva.nombre}" itemValue="#{facturasController.lineaFacturaActual.iva}"/>
                                     <f:selectItems value="#{tiposIVAController.tiposIVA}" var="t" itemValue="#{t}" itemLabel="#{t.nombre}" />
                                 </b:selectOneMenu>
-                                <b:inputText id="factura" value="#{facturasController.facturaActual}" rendered="false"/>
 
                             </b:panelGrid>
                             <b:commandButton id="botonLinea" value="Añadir Linea"
-                                             actionListener="#{facturasController.doGuardarLineaVenta()}"
+                                             actionListener="#{facturasController.doCrearLineaVenta()}"
                                              update="tablaListadoLineas"
                                              />    
                         </f:facet>
