@@ -15,9 +15,75 @@
     </ui:define>
 
     <ui:define name="contenido">
-        <h2>Historia de usuario H14</h2>
+        <h:form id="formularioListado">     
+            <b:container fluid="true">
+                <b:panel title="Listado de Facturas" collapsible="false" offset="1" span="9">
+                    <b:panelGrid columns="4" col-spans="9,1,1,1">
+                        <b:selectOneMenu value="#{facturasController.clienteFiltrado}" colMd="6">
+                            <f:selectItem itemLabel="Todos" itemValue="" />
+                            <f:selectItems value="#{facturasController.clientesFacturas}" var="c" itemValue="#{c}" itemLabel="#{c.nombre}" />
+                        </b:selectOneMenu>
+                        <b:commandButton value="Filtrar por cliente"  
+                                         actionListener="#{facturasController.doBuscarPorCliente()}"
+                                         update=":formularioListado:tablaListado :mensajesGlobal"/>
+                    </b:panelGrid>
+
+                    <b:dataTable id="tablaListado"  class="tablaListadoClass"
+                                 value="#{facturasController.facturas}"
+                                 var="factura" 
+                                 striped="true" 
+                                 page-length="10" searching="false">
+                        <b:dataTableColumn label="Num">
+                            <h:outputText value="#{factura.numFactura}"/>
+                        </b:dataTableColumn>
+
+                        <b:dataTableColumn label="Nombre Cliente">
+                            <h:outputText value="#{factura.cliente.nombre}" />
+                        </b:dataTableColumn>                    
+
+                        <b:dataTableColumn label="NIF Cliente">
+                            <h:outputText value="#{factura.cliente.nif}" />
+                        </b:dataTableColumn>                  
+
+                        <b:dataTableColumn label="Estado">
+                            <h:outputText value="#{factura.estado}" />
+                        </b:dataTableColumn>                    
+
+                        <b:dataTableColumn label="Importe" >
+                            <h:outputText value="#{factura.getImporte()}" />
+                        </b:dataTableColumn>
+                        
+                        <b:dataTableColumn label="Fecha Emision" >
+                            <h:outputText value="#{factura.getFechaEmision()}" />
+                        </b:dataTableColumn>
+
+                        <b:dataTableColumn label="Iva" >
+                            <h:outputText value="ToDo" />
+                        </b:dataTableColumn>
+                        
+                        <b:dataTableColumn label="Total" >
+                            <h:outputText value="ToDo" />
+                        </b:dataTableColumn>
+
+
+                        <b:dataTableColumn label="" orderable="false">                           
+                            <b:commandButton id="botonEditar" icon-awesome="pencil" tooltip="Editar Factura" ajax="true" 
+                                             actionListener="#{facturasController.doEditar(factura)}" 
+                                             update=":formularioEditar"/>                                                                                                               
+                        </b:dataTableColumn>                            
+                    </b:dataTable>
+
+                    <f:facet name="footer">
+                        <b:commandButton id="botonNuevo" icon-awesome="plus" value="Crear Factura" tooltip="Nueva Factura" ajax="true"
+                                         actionListener="#{facturasController.doNuevo()}" 
+                                         update=":formularioEditar"/>
+                    </f:facet>
+                </b:panel>
+            </b:container>
+        </h:form>
+        
+        <ui:include src="nueva-editar_factura.xhtml"/>
+        
     </ui:define>  
-    
-    
     
 </ui:composition>

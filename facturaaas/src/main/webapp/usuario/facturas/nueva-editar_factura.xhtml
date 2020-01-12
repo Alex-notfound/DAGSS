@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html template="/WEB-INF/includes/plantilla.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui">
+    <ui:composition>
+        <h:form id="formularioEditar" >
+                <b:container fluid="true">
+                    <b:panel title="Crear/Editar Factura" 
+                             rendered="#{not empty facturasController.facturaActual}" 
+                             collapsible="false"
+                             offset="1" span="9">
+                        <b:panelGrid columns="2" col-spans="4,8">
+                            <h:outputLabel value="Ejercicio" for="ejercicio"/>
+                            <b:inputText id="ejercicio" value="#{facturasController.facturaActual.ejercicio}" required="true" requiredMessage="Debe indicarse el ejercicio"/>
+
+                            <h:outputLabel value="Cliente" for="cliente"/>
+                            <b:selectOneMenu value="#{facturasController.facturaActual.cliente}" required="true" requiredMessage="Debe indicarse el cliente" colMd="6">
+                                <f:selectItem itemLabel="#{facturasController.facturaActual.cliente.nombre}" itemValue="#{facturasController.facturaActual.cliente}"/>
+                                <f:selectItems value="#{clientesController.clientes}" var="c" itemValue="#{c}" itemLabel="#{c.nombre}" />
+                            </b:selectOneMenu>
+
+                            <h:outputLabel value="Fecha de emision" for="fechaEmision"/>
+                            <b:datepicker mode="icon-popup" id="fechaEmision" value="#{facturasController.facturaActual.fechaEmision}"/>
+
+                            <h:outputLabel value="Forma de pago" for="formaPago"/>
+                            <b:selectOneMenu value="#{facturasController.facturaActual.formaPago}" required="true" requiredMessage="Debe indicarse una forma de pago" colMd="6">
+                                <f:selectItem itemLabel="#{facturasController.facturaActual.formaPago.nombre}" itemValue="#{facturasController.facturaActual.formaPago}"/>
+                                <f:selectItems value="#{formasPagoController.formasPago}" var="f" itemValue="#{f}" itemLabel="#{f.nombre}" />
+                            </b:selectOneMenu>
+
+                            <h:outputLabel value="Estado" for="estado"/>
+                            <b:selectOneMenu value="#{facturasController.facturaActual.estado}" required="true" requiredMessage="Debe indicarse el estado de la factura" colMd="6">
+                                <f:selectItem itemLabel="#{facturasController.facturaActual.estado}" itemValue="#{facturasController.facturaActual.estado}"/>
+                                <f:selectItems value="#{facturasController.estadosFactura}"/>
+                            </b:selectOneMenu>
+
+                            <h:outputLabel value="Comentarios" for="comentarios"/>
+                            <b:inputText id="comentarios" value="#{facturasController.facturaActual.comentarios}"/>
+
+                        </b:panelGrid>
+
+                        <b:panel>
+                            <b:dataTable id="tablaListadoLineas"  class="tablaListadoClass"
+                                         value="#{facturasController.facturaActual.lineasFactura}"
+                                 var="linea" 
+
+                                 searching="false">
+
+                                <b:dataTableColumn label="Num">
+                                    <h:outputText value="#{linea.numLinea}"/>
+                                </b:dataTableColumn>
+
+                                <b:dataTableColumn label="Concepto">
+                                    <h:outputText value="#{linea.concepto}" />
+                                </b:dataTableColumn>                    
+
+                                <b:dataTableColumn label="Cantidad">
+                                    <h:outputText value="#{linea.cantidad}" />
+                                </b:dataTableColumn>                  
+
+                                <b:dataTableColumn label="Precio">
+                                    <h:outputText value="#{linea.precio}" />
+                                </b:dataTableColumn>                    
+
+                                <b:dataTableColumn label="Descuento" >
+                                    <h:outputText value="#{linea.descuento}" />
+                                </b:dataTableColumn>
+
+                                <b:dataTableColumn label="Tipo IVA" >
+                                    <h:outputText value="#{linea.iva.nombre}" />
+                                </b:dataTableColumn>
+
+
+                                <b:dataTableColumn label="" orderable="false">
+                                    <b:commandButton id="botonEditar" icon-awesome="pencil" tooltip="Editar Linea Factura" ajax="true" 
+                                                     actionListener="#{facturasController.doEditarLineaVenta(linea)}" 
+                                                     update=":formularioEditar:"/>
+                                    <b:commandButton id="botonEliminar" icon-awesome="trash" tooltip="Eliminar Linea Factura" ajax="true" 
+                                                     actionListener="#{facturasController.doEliminarLineaVenta(linea)}" 
+                                                     update=":formularioEditar:"/> 
+                                </b:dataTableColumn>                      
+                            </b:dataTable>
+
+                            <f:facet name="footer">
+                                <h:outputLabel value="Nueva linea de venta"/>
+                                <b:panelGrid columns="6" styleClass="ui-noborder">
+                                    <b:inputText label="Concepto" id="concepto" value="#{facturasController.lineaFacturaActual.concepto}"/>
+                                    <b:touchSpin label="Cantidad" id="cantidad" value="#{facturasController.lineaFacturaActual.cantidad}" min="1"/>
+                                    <b:touchSpin label="Precio" id="precio" value="#{facturasController.lineaFacturaActual.precio}"/>
+                                    <b:touchSpin label="Descuento" id="descuento" value="#{facturasController.lineaFacturaActual.descuento}"/>
+                                    <b:selectOneMenu label="Tipo de Iva" value="#{facturasController.lineaFacturaActual.iva}">
+                                        <f:selectItem itemLabel="#{facturasController.lineaFacturaActual.iva.nombre}" itemValue="#{facturasController.lineaFacturaActual.iva}"/>
+                                        <f:selectItems value="#{tiposIVAController.tiposIVA}" var="t" itemValue="#{t}" itemLabel="#{t.nombre}" />
+                                    </b:selectOneMenu>
+
+                                </b:panelGrid>
+                                <b:commandButton id="botonLinea" value="Guardar"
+                                                 actionListener="#{facturasController.doCrearLineaVenta()}"
+                                                 update="tablaListadoLineas"
+                                                 />    
+                            </f:facet>
+                        </b:panel>
+
+                        <b:commandButton value="Guardar Cambios" 
+                                         ajax="true" process="@form" update=":formularioListado:tablaListado :mensajesGlobal :formularioEditar" 
+                                         actionListener="#{facturasController.doGuardarEditado()}"/>
+
+                        <b:commandButton value="Cancelar" immediate="true"
+                                         ajax="true" process="@form" update=":formularioListado:tablaListado :mensajesGlobal :formularioEditar" 
+                                         actionListener="#{facturasController.doCancelarEditado()}"/>
+                    </b:panel>
+                </b:container>
+            </h:form>
+    </ui:composition>
+</html>

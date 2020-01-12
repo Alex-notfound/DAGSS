@@ -5,8 +5,15 @@
  */
 package es.uvigo.esei.dagss.facturaaas.daos;
 
+import es.uvigo.esei.dagss.facturaaas.entidades.Factura;
 import es.uvigo.esei.dagss.facturaaas.entidades.LineaFactura;
+import es.uvigo.esei.dagss.facturaaas.entidades.Usuario;
+import java.util.List;
 
 public interface LineaFacturaDAO extends GenericoDAO<LineaFactura, Long> {
+    
+    public List<LineaFactura> buscarPorUsuario(Usuario usuario);
+            
+    public List<LineaFactura> buscarPorFactura(Factura factura);
 
 }

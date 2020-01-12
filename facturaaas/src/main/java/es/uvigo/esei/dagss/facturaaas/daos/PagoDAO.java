@@ -17,4 +17,6 @@ public interface PagoDAO extends GenericoDAO<Pago, Long> {
 
     public List<Pago> buscarPorCliente(Cliente cliente);
     
+    public List<Pago> buscarPorFactura(Factura factura);
+    
 }
