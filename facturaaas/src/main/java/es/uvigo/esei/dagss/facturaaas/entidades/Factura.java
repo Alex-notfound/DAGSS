@@ -162,6 +162,10 @@ public class Factura implements Serializable {
         this.lineasFactura.add(lf);
     }
     
+    public void deleteLineaFactura(LineaFactura lf){
+        this.lineasFactura.remove(lf);
+    }
+    
     public long getImporte(){
         long importe = 0;
         for(LineaFactura lF : lineasFactura){

@@ -8,12 +8,17 @@ package es.uvigo.esei.dagss.facturaaas.controladores.usuario;
 import es.uvigo.esei.dagss.facturaaas.controladores.AutenticacionController;
 import es.uvigo.esei.dagss.facturaaas.daos.FacturaDAO;
 import es.uvigo.esei.dagss.facturaaas.daos.LineaFacturaDAO;
+import es.uvigo.esei.dagss.facturaaas.daos.PagoDAO;
 import es.uvigo.esei.dagss.facturaaas.entidades.Cliente;
 import es.uvigo.esei.dagss.facturaaas.entidades.EstadoFactura;
+import es.uvigo.esei.dagss.facturaaas.entidades.EstadoPago;
 import es.uvigo.esei.dagss.facturaaas.entidades.Factura;
 import es.uvigo.esei.dagss.facturaaas.entidades.LineaFactura;
+import es.uvigo.esei.dagss.facturaaas.entidades.Pago;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -26,6 +31,7 @@ public class FacturasController implements Serializable {
     private List<Factura> facturas;
     private Factura facturaActual;
     private LineaFactura lineaFacturaActual;
+    private List<LineaFactura> lineasEliminadas;
     private boolean esNuevo;
     private List<Cliente> clientesFacturas;
     private Cliente clienteFiltrado;
@@ -35,6 +41,9 @@ public class FacturasController implements Serializable {
     
     @Inject
     private LineaFacturaDAO daoLineaFactura;
+    
+    @Inject
+    private PagoDAO daoPago;
     
     @Inject
     private AutenticacionController authController;
@@ -97,6 +106,7 @@ public class FacturasController implements Serializable {
         this.clientesFacturas = obtenerClientes();
         this.facturaActual = null;
         this.esNuevo = false;
+        this.lineasEliminadas = new ArrayList<>();
     }
     
     public void doBuscarPorCliente(){
@@ -128,11 +138,23 @@ public class FacturasController implements Serializable {
         this.lineaFacturaActual = linea;
     }
     
+    public void doEliminarLineaVenta(LineaFactura linea){
+        this.facturaActual.deleteLineaFactura(linea);
+        this.lineasEliminadas.add(linea);
+    }
+    
     public void doGuardarEditado(){
         if(this.esNuevo){
             daoFactura.crear(facturaActual);
         }else{
             daoFactura.actualizar(facturaActual);
+            this.borrarPagos();
+        }
+        
+        this.crearPagos();
+        
+        for(LineaFactura lf: this.lineasEliminadas){
+            this.daoLineaFactura.eliminar(lf);
         }
         
         this.facturas = refrescarListaFacturas();
@@ -144,6 +166,7 @@ public class FacturasController implements Serializable {
     public void doCancelarEditado(){
         this.facturaActual = null;
         this.esNuevo = false;
+        this.lineasEliminadas.clear();
     }
 
     private List<Factura> refrescarListaFacturas() {
@@ -163,5 +186,36 @@ public class FacturasController implements Serializable {
         }
         
         return listaClientes;
+    }
+    
+    private void crearPagos(){
+        
+        int periodicidad = facturaActual.getFormaPago().getPeriodicidad();
+        Date fecha = facturaActual.getFechaEmision();
+        Calendar c = Calendar.getInstance();
+        c.setTime(fecha);
+        //Añade dias a la fecha
+        c.add(Calendar.DATE, periodicidad);
+        
+        for (int i = 0; i < this.facturaActual.getFormaPago().getNumeroPagos(); i++) {
+            Pago pago = new Pago();         
+            pago.setCliente(this.facturaActual.getCliente());
+            pago.setEstado(EstadoPago.PENDIENTE);
+            pago.setFactura(facturaActual);
+            pago.setImporte(this.facturaActual.getImporte());
+            pago.setNombre(this.facturaActual.getFormaPago().getNombre());
+            pago.setUsuario(authController.getUsuarioLogueado());
+            pago.setFecha(c.getTime());
+            this.daoPago.crear(pago);
+            
+            c.add(Calendar.DATE, periodicidad);
+        }
+        
+    }
+    
+    private void borrarPagos(){
+        for(Pago p: this.daoPago.buscarPorFactura(facturaActual)){
+            this.daoPago.eliminar(p);
+        }
     }
 }

@@ -76,9 +76,12 @@
 
 
                                 <b:dataTableColumn label="" orderable="false">
-                                    <b:commandButton id="botonEditar" icon-awesome="pencil" tooltip="Editar Cliente" ajax="true" 
+                                    <b:commandButton id="botonEditar" icon-awesome="pencil" tooltip="Editar Linea Factura" ajax="true" 
                                                      actionListener="#{facturasController.doEditarLineaVenta(linea)}" 
-                                                     update=":formularioEditar:"/>                                                                                                                    
+                                                     update=":formularioEditar:"/>
+                                    <b:commandButton id="botonEliminar" icon-awesome="trash" tooltip="Eliminar Linea Factura" ajax="true" 
+                                                     actionListener="#{facturasController.doEliminarLineaVenta(linea)}" 
+                                                     update=":formularioEditar:"/> 
                                 </b:dataTableColumn>                      
                             </b:dataTable>
 
