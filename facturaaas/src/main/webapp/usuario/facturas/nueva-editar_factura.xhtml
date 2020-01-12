@@ -89,9 +89,9 @@
                                 <h:outputLabel value="Nueva linea de venta"/>
                                 <b:panelGrid columns="6" styleClass="ui-noborder">
                                     <b:inputText label="Concepto" id="concepto" value="#{facturasController.lineaFacturaActual.concepto}"/>
-                                    <b:inputText label="Cantidad" id="cantidad" value="#{facturasController.lineaFacturaActual.cantidad}"/>
-                                    <b:inputText label="Precio" id="precio" value="#{facturasController.lineaFacturaActual.precio}" />
-                                    <b:inputText label="Descuento" id="descuento" value="#{facturasController.lineaFacturaActual.descuento}"/>
+                                    <b:touchSpin label="Cantidad" id="cantidad" value="#{facturasController.lineaFacturaActual.cantidad}" min="1"/>
+                                    <b:touchSpin label="Precio" id="precio" value="#{facturasController.lineaFacturaActual.precio}"/>
+                                    <b:touchSpin label="Descuento" id="descuento" value="#{facturasController.lineaFacturaActual.descuento}"/>
                                     <b:selectOneMenu label="Tipo de Iva" value="#{facturasController.lineaFacturaActual.iva}">
                                         <f:selectItem itemLabel="#{facturasController.lineaFacturaActual.iva.nombre}" itemValue="#{facturasController.lineaFacturaActual.iva}"/>
                                         <f:selectItems value="#{tiposIVAController.tiposIVA}" var="t" itemValue="#{t}" itemLabel="#{t.nombre}" />
