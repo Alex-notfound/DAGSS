@@ -62,10 +62,7 @@
                         </b:dataTableColumn>
 
 
-                        <b:dataTableColumn label="" orderable="false">
-                            <b:button id="botonVer" icon-awesome="eye" tooltip="Ver Factura"
-                                             outcome="/usuario/facturas/detalle_factura.xhtml" iconAwesome="users"/>    
-                            
+                        <b:dataTableColumn label="" orderable="false">                           
                             <b:commandButton id="botonEditar" icon-awesome="pencil" tooltip="Editar Factura" ajax="true" 
                                              actionListener="#{facturasController.doEditar(factura)}" 
                                              update=":formularioEditar"/>                                                                                                               
