@@ -85,11 +85,11 @@
                             <f:facet name="footer">
                                 <h:outputLabel value="Nueva linea de venta"/>
                                 <b:panelGrid columns="6" styleClass="ui-noborder">
-                                    <b:inputText label="Concepto" id="concepto" value="#{facturasController.lineaFacturaActual.concepto}" required="true" requiredMessage="Debe indicarse el concepto"/>
-                                    <b:inputText label="Cantidad" id="cantidad" value="#{facturasController.lineaFacturaActual.cantidad}" required="true" requiredMessage="Debe indicarse la cantidad"/>
-                                    <b:inputText label="Precio" id="precio" value="#{facturasController.lineaFacturaActual.precio}" required="true" requiredMessage="Debe indicarse el precio"/>
-                                    <b:inputText label="Descuento" id="descuento" value="#{facturasController.lineaFacturaActual.descuento}" required="true" requiredMessage="Debe indicarse un descuento(%)"/>
-                                    <b:selectOneMenu label="Tipo de Iva" value="#{facturasController.lineaFacturaActual.iva}" required="true" requiredMessage="Debe indicarse un tipo de iva">
+                                    <b:inputText label="Concepto" id="concepto" value="#{facturasController.lineaFacturaActual.concepto}"/>
+                                    <b:inputText label="Cantidad" id="cantidad" value="#{facturasController.lineaFacturaActual.cantidad}"/>
+                                    <b:inputText label="Precio" id="precio" value="#{facturasController.lineaFacturaActual.precio}" />
+                                    <b:inputText label="Descuento" id="descuento" value="#{facturasController.lineaFacturaActual.descuento}"/>
+                                    <b:selectOneMenu label="Tipo de Iva" value="#{facturasController.lineaFacturaActual.iva}">
                                         <f:selectItem itemLabel="#{facturasController.lineaFacturaActual.iva.nombre}" itemValue="#{facturasController.lineaFacturaActual.iva}"/>
                                         <f:selectItems value="#{tiposIVAController.tiposIVA}" var="t" itemValue="#{t}" itemLabel="#{t.nombre}" />
                                     </b:selectOneMenu>
