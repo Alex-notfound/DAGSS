@@ -156,6 +156,9 @@ public class Factura implements Serializable {
     }
     
     public void addLineaFactura(LineaFactura lf){
+        if(this.lineasFactura.contains(lf)){
+            this.lineasFactura.remove(lf);
+        }
         this.lineasFactura.add(lf);
     }
     

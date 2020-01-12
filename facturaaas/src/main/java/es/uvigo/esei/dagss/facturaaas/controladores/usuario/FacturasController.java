@@ -124,9 +124,9 @@ public class FacturasController implements Serializable {
         this.lineaFacturaActual = new LineaFactura();
     }
     
-//    public void doEditarLineaVenta(LineaFactura linea){
-//        this.lineaFacturaActual = linea;
-//    }
+    public void doEditarLineaVenta(LineaFactura linea){
+        this.lineaFacturaActual = linea;
+    }
     
     public void doGuardarEditado(){
         if(this.esNuevo){
