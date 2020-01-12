@@ -9,8 +9,10 @@ import es.uvigo.esei.dagss.facturaaas.entidades.Cliente;
 import es.uvigo.esei.dagss.facturaaas.entidades.Factura;
 import es.uvigo.esei.dagss.facturaaas.entidades.Usuario;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 
+@Stateless
 public class FacturaDAOJPA extends GenericoDAOJPA<Factura, Long> implements FacturaDAO {
 
     @Override

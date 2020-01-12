@@ -59,7 +59,7 @@ public class Factura implements Serializable {
     private String comentarios;
 
     public Factura() {
-        this.fechaEmision = Calendar.getInstance().getTime();
+        //this.fechaEmision = Calendar.getInstance().getTime();
     }
 
     public Factura(Long numFactura, String ejercicio, Usuario usuario, Cliente cliente, Date fechaEmision, FormaPago formaPago, Collection<LineaFactura> lineasFactura, Collection<Pago> pago, EstadoFactura estado, String comentarios) {
@@ -155,4 +155,12 @@ public class Factura implements Serializable {
         this.usuario = usuario;
     }
     
+    public long getImporte(){
+        long importe = 0;
+        for(LineaFactura lF : lineasFactura){
+            importe =+ lF.getPrecio();
+        };
+        
+        return importe;
+    }
 }
