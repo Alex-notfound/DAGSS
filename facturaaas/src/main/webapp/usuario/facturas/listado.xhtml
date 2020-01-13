@@ -20,7 +20,7 @@
                 <b:panel title="Listado de Facturas" collapsible="false" offset="1" span="9">
                     <b:panelGrid columns="4" col-spans="9,1,1,1">
                         <b:selectOneMenu value="#{facturasController.clienteFiltrado}" colMd="6">
-                            <f:selectItem itemLabel="Todos" itemValue="" />
+                            <f:selectItem itemLabel="Todos" itemValue="#{null}" />
                             <f:selectItems value="#{facturasController.clientesFacturas}" var="c" itemValue="#{c}" itemLabel="#{c.nombre}" />
                         </b:selectOneMenu>
                         <b:commandButton value="Filtrar por cliente"  
