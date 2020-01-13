@@ -21,6 +21,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -133,9 +135,56 @@ public class FacturasController implements Serializable {
     }
     
     public void doCrearLineaVenta(){
-        this.lineaFacturaActual.setFactura(this.facturaActual);
-        this.facturaActual.addLineaFactura(this.lineaFacturaActual);
-        this.lineaFacturaActual = new LineaFactura();
+        
+        Boolean errors = false;
+        
+        if(this.lineaFacturaActual.getConcepto().length() < 1){
+            errors = true;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,
+                                                                                "El concepto no puede estar vacio", 
+                                                                                null));
+        }
+        
+        try{
+            Integer integer = (Integer) this.lineaFacturaActual.getCantidad();
+        }catch(NullPointerException exc){
+            errors = true;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,
+                                                                                "El campo cantidad tiene que tener un valor entero", 
+                                                                                null));
+        }
+        
+        try{
+            Long l = (long) this.lineaFacturaActual.getPrecio();
+        }catch(NullPointerException exc){
+            errors = true;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,
+                                                                                "El campo precio tiene que tener un valor numerico", 
+                                                                                null));
+        }
+        
+        try{
+            Long l = (long) this.lineaFacturaActual.getDescuento();
+        }catch(NullPointerException exc){
+            errors = true;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,
+                                                                                "El campo precio tiene que tener un valor numerico", 
+                                                                                null));
+        }
+        
+        if(this.lineaFacturaActual.getIva() == null){
+            errors = true;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,
+                                                                                "Tiene que selecciona un tipo de IVA", 
+                                                                                null));
+        }
+        
+        if(!errors){
+            this.lineaFacturaActual.setFactura(this.facturaActual);
+            this.facturaActual.addLineaFactura(this.lineaFacturaActual);
+            this.lineaFacturaActual = new LineaFactura();
+        }
+        
     }
     
     public void doEditarLineaVenta(LineaFactura linea){
