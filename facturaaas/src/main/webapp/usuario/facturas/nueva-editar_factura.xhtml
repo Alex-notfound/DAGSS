@@ -73,6 +73,10 @@
                                 <b:dataTableColumn label="Tipo IVA" >
                                     <h:outputText value="#{linea.iva.nombre}" />
                                 </b:dataTableColumn>
+                                
+                                <b:dataTableColumn label="Total" >
+                                    <h:outputText value="#{linea.getTotal()}" />
+                                </b:dataTableColumn>
 
 
                                 <b:dataTableColumn label="" orderable="false">

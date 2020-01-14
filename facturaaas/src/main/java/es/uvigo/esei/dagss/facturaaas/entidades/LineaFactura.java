@@ -112,5 +112,9 @@ public class LineaFactura implements Serializable {
     public void setFactura(Factura factura) {
         this.factura = factura;
     }
+    
+    public long getTotal(){
+        return 0;
+    }
 
 }

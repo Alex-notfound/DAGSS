@@ -6,15 +6,21 @@
 package es.uvigo.esei.dagss.facturaaas.controladores.usuario;
 
 import es.uvigo.esei.dagss.facturaaas.controladores.AutenticacionController;
+import es.uvigo.esei.dagss.facturaaas.daos.DatosFacturacionDAO;
 import es.uvigo.esei.dagss.facturaaas.daos.FacturaDAO;
+import es.uvigo.esei.dagss.facturaaas.daos.FormaPagoDAO;
 import es.uvigo.esei.dagss.facturaaas.daos.LineaFacturaDAO;
 import es.uvigo.esei.dagss.facturaaas.daos.PagoDAO;
+import es.uvigo.esei.dagss.facturaaas.daos.TipoIVADAO;
 import es.uvigo.esei.dagss.facturaaas.entidades.Cliente;
+import es.uvigo.esei.dagss.facturaaas.entidades.DatosFacturacion;
 import es.uvigo.esei.dagss.facturaaas.entidades.EstadoFactura;
 import es.uvigo.esei.dagss.facturaaas.entidades.EstadoPago;
 import es.uvigo.esei.dagss.facturaaas.entidades.Factura;
+import es.uvigo.esei.dagss.facturaaas.entidades.FormaPago;
 import es.uvigo.esei.dagss.facturaaas.entidades.LineaFactura;
 import es.uvigo.esei.dagss.facturaaas.entidades.Pago;
+import es.uvigo.esei.dagss.facturaaas.entidades.TipoIVA;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,6 +43,7 @@ public class FacturasController implements Serializable {
     private boolean esNuevo;
     private List<Cliente> clientesFacturas;
     private Cliente clienteFiltrado;
+    private DatosFacturacion datosFacturacionUsuario;
     
     @Inject
     private FacturaDAO daoFactura;
@@ -46,6 +53,9 @@ public class FacturasController implements Serializable {
     
     @Inject
     private PagoDAO daoPago;
+    
+    @Inject
+    private DatosFacturacionDAO daoDatosFacturacion;
     
     @Inject
     private AutenticacionController authController;
@@ -101,7 +111,7 @@ public class FacturasController implements Serializable {
     public EstadoFactura[] getEstadosFactura(){
         return EstadoFactura.values();
     }
-    
+
     @PostConstruct
     public void cargaInicial(){
         this.facturas = refrescarListaFacturas();
@@ -109,6 +119,8 @@ public class FacturasController implements Serializable {
         this.facturaActual = null;
         this.esNuevo = false;
         this.lineasEliminadas = new ArrayList<>();
+        
+        this.datosFacturacionUsuario = daoDatosFacturacion.buscarConPropietario(authController.getUsuarioLogueado());
     }
     
     public void doBuscarPorCliente(){
@@ -119,10 +131,16 @@ public class FacturasController implements Serializable {
         }
     }
     
+    
+    
     public void doNuevo(){
         this.esNuevo = true;
         this.facturaActual = new Factura();
+        this.facturaActual.setFormaPago(datosFacturacionUsuario.getFormaPagoPorDefecto());
+        
         this.lineaFacturaActual = new LineaFactura();
+        this.lineaFacturaActual.setIva(datosFacturacionUsuario.getTipoIVAPorDefecto());
+        
         this.facturaActual.setUsuario(authController.getUsuarioLogueado());
         this.facturaActual.setLineasFactura(refrescarListaLineasFacturas());
     }
