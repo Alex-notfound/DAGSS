@@ -52,7 +52,7 @@ public class Pago implements Serializable {
     public Pago() {
     }
 
-    public Pago(int id, Usuario usuario, Factura factura, String nombre, Cliente cliente, EstadoPago estado, Long importe, Date fecha) {
+    public Pago(int id, Usuario usuario, Factura factura, String nombre, Cliente cliente, EstadoPago estado, double importe, Date fecha) {
         this.id = id;
         this.usuario = usuario;
         this.factura = factura;
