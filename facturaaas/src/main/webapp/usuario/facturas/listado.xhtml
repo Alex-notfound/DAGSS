@@ -58,11 +58,13 @@
                         </b:dataTableColumn>
 
                         <b:dataTableColumn label="Iva" >
-                            <h:outputText value="ToDo" />
+                            <h:outputText value="#{factura.getIva()}">
+                                
+                            </h:outputText>
                         </b:dataTableColumn>
                         
                         <b:dataTableColumn label="Total" >
-                            <h:outputText value="ToDo" />
+                            <h:outputText value="#{factura.getTotal()}" />
                         </b:dataTableColumn>
 
 

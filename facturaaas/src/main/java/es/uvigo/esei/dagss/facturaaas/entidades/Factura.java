@@ -166,12 +166,25 @@ public class Factura implements Serializable {
         this.lineasFactura.remove(lf);
     }
     
-    public long getImporte(){
-        long importe = 0;
+    public double getImporte(){
+        double importe = 0;
         for(LineaFactura lF : lineasFactura){
-            importe =+ lF.getPrecio();
-        };
+            importe =+ lF.getTotal();
+        }
         
         return importe;
+    }
+    
+    public double getIva(){
+        double iva = 0;
+        for(LineaFactura lf: this.lineasFactura){
+            iva =+ lf.calcularIVA();
+        }
+        
+        return iva;
+    }
+    
+    public double getTotal(){
+        return getImporte() + getIva();
     }
 }

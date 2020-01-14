@@ -113,7 +113,11 @@ public class LineaFactura implements Serializable {
         this.factura = factura;
     }
     
-    public long getTotal(){
+    public double calcularIVA(){
+        return  (this.tipoIva.getPorcentaje() / 100 )* this.precio * this.cantidad;
+    }
+    
+    public double getTotal(){
         return 0;
     }
 
