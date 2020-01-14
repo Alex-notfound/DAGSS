@@ -168,7 +168,7 @@ public class FacturasController implements Serializable {
         }catch(NullPointerException exc){
             errors = true;
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR ,
-                                                                                "El campo precio tiene que tener un valor numerico", 
+                                                                                "El campo descuento tiene que tener un valor numerico", 
                                                                                 null));
         }
         
