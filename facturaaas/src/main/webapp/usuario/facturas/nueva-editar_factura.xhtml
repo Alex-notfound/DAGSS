@@ -87,7 +87,7 @@
 
                             <f:facet name="footer">
                                 <h:outputLabel value="Nueva linea de venta"/>
-                                <b:panelGrid columns="6" styleClass="ui-noborder">
+                                <b:panelGrid  id="formularioLinea" columns="6" styleClass="ui-noborder">
                                     <b:inputText label="Concepto" id="concepto" value="#{facturasController.lineaFacturaActual.concepto}"/>
                                     <b:touchSpin label="Cantidad" id="cantidad" value="#{facturasController.lineaFacturaActual.cantidad}" min="1"/>
                                     <b:touchSpin label="Precio" id="precio" value="#{facturasController.lineaFacturaActual.precio}" min="0"/>
@@ -100,7 +100,7 @@
                                 </b:panelGrid>
                                 <b:commandButton id="botonLinea" value="Guardar"
                                                  actionListener="#{facturasController.doCrearLineaVenta()}"
-                                                 update="tablaListadoLineas :mensajesGlobal :formularioEditar"
+                                                 update="tablaListadoLineas :mensajesGlobal formularioLinea"
                                                  />    
                             </f:facet>
                         </b:panel>
