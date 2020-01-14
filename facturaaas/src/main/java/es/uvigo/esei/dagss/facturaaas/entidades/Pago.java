@@ -44,7 +44,7 @@ public class Pago implements Serializable {
     @Enumerated(EnumType.STRING)
     private EstadoPago estado;
 
-    private Long importe;
+    private double importe;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
@@ -83,7 +83,7 @@ public class Pago implements Serializable {
         return estado;
     }
 
-    public Long getImporte() {
+    public double getImporte() {
         return importe;
     }
 
@@ -111,7 +111,7 @@ public class Pago implements Serializable {
         this.estado = estado;
     }
 
-    public void setImporte(Long importe) {
+    public void setImporte(double importe) {
         this.importe = importe;
     }
 

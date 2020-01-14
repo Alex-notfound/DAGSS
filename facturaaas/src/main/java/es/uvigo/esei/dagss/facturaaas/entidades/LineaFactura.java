@@ -32,8 +32,8 @@ public class LineaFactura implements Serializable {
     private Long numLinea;
     private String concepto;
     private int cantidad;
-    private Long precio;
-    private Long descuento;
+    private double precio;
+    private double descuento;
 
     @ManyToOne
     private TipoIVA tipoIva;
@@ -47,7 +47,7 @@ public class LineaFactura implements Serializable {
         this.cantidad = 1;
     }
 
-    public LineaFactura(Long numLinea, String concepto, int cantidad, Long precio, Long descuento, TipoIVA tipoIva, Factura factura) {
+    public LineaFactura(Long numLinea, String concepto, int cantidad, double precio, double descuento, TipoIVA tipoIva, Factura factura) {
         this.numLinea = numLinea;
         this.concepto = concepto;
         this.cantidad = cantidad;
@@ -81,19 +81,19 @@ public class LineaFactura implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Long getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Long precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
-    public Long getDescuento() {
+    public double getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(Long descuento) {
+    public void setDescuento(double descuento) {
         this.descuento = descuento;
     }
 
