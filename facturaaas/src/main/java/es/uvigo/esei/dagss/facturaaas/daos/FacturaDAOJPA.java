@@ -21,10 +21,11 @@ public class FacturaDAOJPA extends GenericoDAOJPA<Factura, Long> implements Fact
         query.setParameter("usuarioId", usuario.getId());
         return query.getResultList();
     }
-    
+
     @Override
-    public List<Factura> buscarPorCliente(Cliente cliente) {
-        TypedQuery<Factura> query = em.createQuery("SELECT f FROM Factura AS f WHERE f.cliente.id = :clienteId", Factura.class);
+    public List<Factura> buscarPorCliente(Cliente cliente, Usuario usuario) {
+        TypedQuery<Factura> query = em.createQuery("SELECT f FROM Factura AS f WHERE f.usuario.id = :usuarioId AND f.cliente.id = :clienteId", Factura.class);
+        query.setParameter("usuarioId", usuario.getId());
         query.setParameter("clienteId", cliente.getId());
         return query.getResultList();
     }

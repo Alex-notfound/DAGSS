@@ -14,5 +14,5 @@ public interface FacturaDAO extends GenericoDAO<Factura, Long>{
      
     public List<Factura> buscarPorUsuario(Usuario usuario);
             
-    public List<Factura> buscarPorCliente(Cliente cliente);
+    public List<Factura> buscarPorCliente(Cliente cliente, Usuario usuario);
 }

@@ -65,7 +65,7 @@ public class PagosController implements Serializable{
     
     public void doBuscarPorCliente(){
         if(clienteFiltrado != null){
-            this.pagos = daoPago.buscarPorCliente(clienteFiltrado);
+            this.pagos = daoPago.buscarPorCliente(clienteFiltrado, authController.getUsuarioLogueado());
         }else{
             this.pagos = this.refrescarLista();
         }

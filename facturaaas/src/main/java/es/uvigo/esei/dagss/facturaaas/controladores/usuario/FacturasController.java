@@ -126,7 +126,7 @@ public class FacturasController implements Serializable {
 
     public void doBuscarPorCliente() {
         if (this.clienteFiltrado != null) {
-            this.facturas = daoFactura.buscarPorCliente(clienteFiltrado);
+            this.facturas = daoFactura.buscarPorCliente(clienteFiltrado, authController.getUsuarioLogueado());
         } else {
             this.facturas = this.refrescarListaFacturas();
         }
