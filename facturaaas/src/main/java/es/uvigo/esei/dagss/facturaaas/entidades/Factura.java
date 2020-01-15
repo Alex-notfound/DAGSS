@@ -154,37 +154,24 @@ public class Factura implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    public void addLineaFactura(LineaFactura lf){
-        if(this.lineasFactura.contains(lf)){
+
+    public void addLineaFactura(LineaFactura lf) {
+        if (this.lineasFactura.contains(lf)) {
             this.lineasFactura.remove(lf);
         }
         this.lineasFactura.add(lf);
     }
-    
-    public void deleteLineaFactura(LineaFactura lf){
+
+    public void deleteLineaFactura(LineaFactura lf) {
         this.lineasFactura.remove(lf);
     }
-    
-    public double getImporte(){
+
+    public double getImporte() {
         double importe = 0;
-        for(LineaFactura lF : lineasFactura){
-            importe =+ lF.getTotal();
+        for (LineaFactura lF : lineasFactura) {
+            importe += lF.getTotal();
         }
-        
+
         return importe;
-    }
-    
-    public double getIva(){
-        double iva = 0;
-        for(LineaFactura lf: this.lineasFactura){
-            iva =+ lf.calcularIVA();
-        }
-        
-        return iva;
-    }
-    
-    public double getTotal(){
-        return getImporte() + getIva();
     }
 }
